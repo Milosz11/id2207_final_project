@@ -1,8 +1,11 @@
 #include <iostream>
 
 #include "format.hpp"
+#include "entity_objects.hpp"
 
 int main() {
-    printGreeting("Hello world");
-    int e = 3;
+    printGreeting();
+    printUserNamePrompt();
+    printPasswordPrompt();
+    
 }

@@ -3,4 +3,12 @@
 
 using namespace std;
 
-void printGreeting(string message);
+void printBreak();
+
+void printEmptyLine();
+
+void printGreeting();
+
+void printUserNamePrompt();
+
+void printPasswordPrompt();

@@ -1,5 +1,23 @@
 #include "format.hpp"
 
-void printGreeting(string message) {
-    cout << message << endl;
+void printBreak() {
+    cout << string(70, '-') << endl;
+}
+
+void printEmptyLine() {
+    cout << "-" << endl;
+}
+
+void printGreeting() {
+    printBreak();
+    cout << "- Welcome to the SEP system!" << endl;
+    printEmptyLine();
+}
+
+void printUserNamePrompt() {
+    cout << "> Username: ";
+}
+
+void printPasswordPrompt() {
+    cout << "> Password: ";
 }
