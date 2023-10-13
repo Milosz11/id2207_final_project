@@ -27,7 +27,7 @@ enum Role {
 
 class User {
 public:
-    User(string &userName, string &password, string &fullName, Role role);
+    User(const string &userName, const string &password, const string &fullName, Role role);
 
 private:
     string _userName;
