@@ -2,11 +2,32 @@
 
 using namespace std;
 
-enum Department {Administration, Financial, Production, Services };
+enum Role {
+    AdministrationDepartmentManager,
+    FinancialManager,
+    ProductionManager,
+    ServicesManager,
+    SeniorCustomerServiceOfficer,
+    CustomerService,
+    MarketingOfficer,
+    MarketingAssistant,
+    SeniorHRManager,
+    HRAssistant,
+    Photographer,
+    AudioSpecialist,
+    GraphicDesigner,
+    Decorations,
+    ComputerRelated,
+    Chef,
+    Waiter,
+    VicePresident,
+    Secretary,
+    Accountant
+};
 
 class User {
 public:
-    User(string &userName, string &password, string &fullName, Department department);
+    User(string &userName, string &password, string &fullName, Role role);
 
 private:
     string _userName;
@@ -15,6 +36,6 @@ private:
 
     string _fullName;
 
-    Department _department;
+    Role _role;
 
 };
