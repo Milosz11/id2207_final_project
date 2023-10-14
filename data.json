@@ -1,0 +1,24 @@
+{
+    "database": {
+        "users": [
+            {
+                "userName": "mildab",
+                "password": "password",
+                "fullName": "Milosz Dabrowski",
+                "role": 10
+            },
+            {
+                "userName": "bhashu",
+                "password": "password",
+                "fullName": "Bhavya Shukla",
+                "role": 11
+            },
+            {
+                "userName": "mike1",
+                "password": "password",
+                "fullName": "Mike",
+                "role": 0
+            }
+        ]
+    }
+}
