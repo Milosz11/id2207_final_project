@@ -14,10 +14,29 @@ void printGreeting() {
     printEmptyLine();
 }
 
+void printPreLoginMenu() {
+    cout << "- Select a menu option:" << endl;
+    cout << "- 1. Login" << endl;
+    cout << "- 2. Quit" << endl;
+    cout << "> ";
+}
+
 void printUserNamePrompt() {
     cout << "> Username: ";
 }
 
+void printUserNameDoesNotExist() {
+    cout << "- Username was not found. Please try again." << endl;
+}
+
 void printPasswordPrompt() {
     cout << "> Password: ";
+}
+
+void printPasswordIncorrect() {
+    cout << "- Password is incorrect. Please try again." << endl;
+}
+
+void printLogInSuccess() {
+    cout << "- Login successful!" << endl;
 }

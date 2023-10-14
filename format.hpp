@@ -9,6 +9,14 @@ void printEmptyLine();
 
 void printGreeting();
 
+void printPreLoginMenu();
+
 void printUserNamePrompt();
 
+void printUserNameDoesNotExist();
+
 void printPasswordPrompt();
+
+void printPasswordIncorrect();
+
+void printLogInSuccess();
