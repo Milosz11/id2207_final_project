@@ -29,6 +29,8 @@ class User {
 public:
     User(const string &userName, const string &password, const string &fullName, Role role);
 
+    void addUser();
+
 private:
     string _userName;
 

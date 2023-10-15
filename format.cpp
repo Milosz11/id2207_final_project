@@ -10,8 +10,8 @@ void printEmptyLine() {
 
 void printGreeting() {
     printBreak();
-    cout << "- Welcome to the SEP system!" << endl;
-    printEmptyLine();
+    cout << string(20, ' ') << " Welcome to the SEP system!" << endl;
+    printBreak();
 }
 
 void printPreLoginMenu() {

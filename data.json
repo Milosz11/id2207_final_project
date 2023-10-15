@@ -2,6 +2,12 @@
     "database": {
         "users": [
             {
+                "userName": "user",
+                "password": "password",
+                "fullName": "John Doe",
+                "role": 1
+            },
+            {
                 "userName": "mildab",
                 "password": "password",
                 "fullName": "Milosz Dabrowski",

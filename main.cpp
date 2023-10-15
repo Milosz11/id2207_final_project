@@ -1,15 +1,25 @@
 #include <iostream>
+#include <fstream>
 
+#include "json.hpp"
 #include "format.hpp"
 #include "entity_objects.hpp"
+
+using json = nlohmann::json;
 
 /**
  * Encapsulate the functionality for logging a user into the system
 */
-User *handleUserLogin();
+User *handleUserLogin(json data);
 
 int main() {
-    User *pUser = handleUserLogin();
+
+    ifstream ifs("data.json");
+    json data = json::parse(ifs);
+    json users = data["database"]["users"];
+
+    printGreeting();
+    User *pUser = handleUserLogin(users);
 
     if (pUser == nullptr) {
         return 0;
@@ -18,9 +28,7 @@ int main() {
     return 0;
 }
 
-User *handleUserLogin() {
-    string username = "user";
-    string password = "password";
+User *handleUserLogin(json users) {
     
     User *pReturnUser = nullptr;
 
@@ -39,15 +47,22 @@ User *handleUserLogin() {
         bool runPasswordLoop = true;
         string inputUserName;
         string inputPassword;
+        string secret;
 
         // user name loop
         while (runUserNameLoop) {
             printUserNamePrompt();
             cin >> inputUserName;
+            
+            for(auto user:users) {
+                if(user["userName"].get<string>() == inputUserName){
+                    secret = user["password"].get<string>();
+                }
+            }
 
             if (inputUserName == "q") {
                 return nullptr;
-            } else if (inputUserName == username) {
+            } else if (!secret.empty()) {
                 runUserNameLoop = false;
             } else {
                 printUserNameDoesNotExist();
@@ -61,7 +76,7 @@ User *handleUserLogin() {
 
             if (inputPassword == "q") {
                 return nullptr;
-            } else if (inputPassword == password) {
+            } else if (inputPassword == secret) {
                 printLogInSuccess();
                 runPasswordLoop = false;
                 runLogInLoop = false;
