@@ -54,8 +54,8 @@ User *handleUserLogin(json users) {
             printUserNamePrompt();
             cin >> inputUserName;
             
-            for(auto user:users) {
-                if(user["userName"].get<string>() == inputUserName){
+            for (auto user:users) {
+                if (user["userName"].get<string>() == inputUserName){
                     secret = user["password"].get<string>();
                 }
             }
