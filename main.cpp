@@ -16,7 +16,7 @@ int main() {
 
     ifstream ifs("data.json");
     json data = json::parse(ifs);
-    json users = data["database"]["users"];
+    json users = data["users"];
 
     printGreeting();
     User *pUser = handleUserLogin(users);

@@ -1,30 +1,28 @@
 {
-    "database": {
-        "users": [
-            {
-                "userName": "user",
-                "password": "password",
-                "fullName": "John Doe",
-                "role": 1
-            },
-            {
-                "userName": "mildab",
-                "password": "password",
-                "fullName": "Milosz Dabrowski",
-                "role": 10
-            },
-            {
-                "userName": "bhashu",
-                "password": "password",
-                "fullName": "Bhavya Shukla",
-                "role": 11
-            },
-            {
-                "userName": "mike1",
-                "password": "password",
-                "fullName": "Mike",
-                "role": 0
-            }
-        ]
-    }
+    "users": [
+        {
+            "userName": "user",
+            "password": "password",
+            "fullName": "John Doe",
+            "role": 1
+        },
+        {
+            "userName": "mildab",
+            "password": "password",
+            "fullName": "Milosz Dabrowski",
+            "role": 10
+        },
+        {
+            "userName": "bhashu",
+            "password": "password",
+            "fullName": "Bhavya Shukla",
+            "role": 11
+        },
+        {
+            "userName": "mike1",
+            "password": "password",
+            "fullName": "Mike",
+            "role": 0
+        }
+    ]
 }
