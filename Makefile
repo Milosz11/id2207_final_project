@@ -7,14 +7,14 @@ main: ${OBJECT_FILES}
 main.o: main.cpp
 	${CC} -c main.cpp
 
-format.o: format.cpp format.hpp
-	${CC} -c format.cpp
+format.o: src/format.cpp inc/format.hpp
+	${CC} -c src/format.cpp
 
-entity_objects.o: entity_objects.cpp entity_objects.hpp
-	${CC} -c entity_objects.cpp
+entity_objects.o: src/entity_objects.cpp inc/entity_objects.hpp
+	${CC} -c src/entity_objects.cpp
 
-utility.o: utility.cpp utility.hpp
-	${CC} -c utility.cpp
+utility.o: src/utility.cpp inc/utility.hpp
+	${CC} -c src/utility.cpp
 
 clean:
 	rm main *.o

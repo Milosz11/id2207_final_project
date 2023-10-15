@@ -1,4 +1,4 @@
-#include "entity_objects.hpp"
+#include "../inc/entity_objects.hpp"
 
 using json = nlohmann::json;
 

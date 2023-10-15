@@ -1,4 +1,4 @@
-#include "format.hpp"
+#include "../inc/format.hpp"
 
 void printBreak() {
     cout << string(70, '-') << endl;

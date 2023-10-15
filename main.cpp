@@ -1,10 +1,10 @@
 #include <iostream>
 #include <fstream>
 
-#include "json.hpp"
-#include "format.hpp"
-#include "entity_objects.hpp"
-#include "utility.hpp"
+#include "inc/json.hpp"
+#include "inc/format.hpp"
+#include "inc/entity_objects.hpp"
+#include "inc/utility.hpp"
 
 using json = nlohmann::json;
 
@@ -15,11 +15,13 @@ int main() {
     json users = data["users"];
 
     printGreeting();
-    User *pUser = handleUserLogin(users);
 
+    User *pUser = handleUserLogin(users);
     if (pUser == nullptr) {
         return 0;
     }
+
+
 
     delete pUser;
 
