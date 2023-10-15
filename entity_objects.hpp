@@ -46,3 +46,16 @@ private:
     Role _role;
 
 };
+
+class Client {
+public:
+    Client(const string &recordNumber, const string &fullName, const string &phoneNumber);
+
+private:
+    string _recordNumber;
+
+    string _fullName;
+
+    string _phoneNumber;
+
+};

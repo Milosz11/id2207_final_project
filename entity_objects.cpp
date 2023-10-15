@@ -13,3 +13,6 @@ void User::addUser() {
                 {"role", this->_role}
         };
 }
+
+Client::Client(const string &recordNumber, const string &fullName, const string &phoneNumber) :
+        _recordNumber(recordNumber), _fullName(fullName), _phoneNumber(phoneNumber) { }
