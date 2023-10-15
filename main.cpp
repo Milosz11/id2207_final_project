@@ -8,11 +8,6 @@
 
 using json = nlohmann::json;
 
-/**
- * Encapsulate the functionality for logging a user into the system
-*/
-User *handleUserLogin(json data);
-
 int main() {
 
     ifstream ifs("data.json");
@@ -25,6 +20,8 @@ int main() {
     if (pUser == nullptr) {
         return 0;
     }
+
+    delete pUser;
 
     return 0;
 }

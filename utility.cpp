@@ -1,6 +1,6 @@
 #include "utility.hpp"
 
-User *handleUserLogin(json users) {
+User *handleUserLogin(const json &users) {
     
     User *pReturnUser = nullptr;
 
@@ -19,22 +19,26 @@ User *handleUserLogin(json users) {
         bool runPasswordLoop = true;
         string inputUserName;
         string inputPassword;
-        string secret;
+        json selected_user;         // initialize when correct user is found in database
 
         // user name loop
         while (runUserNameLoop) {
             printUserNamePrompt();
             cin >> inputUserName;
             
-            for (auto user:users) {
-                if (user["userName"].get<string>() == inputUserName){
-                    secret = user["password"].get<string>();
+            // find json user object referring to passed username
+            for (auto user : users) {
+                if (inputUserName == user["userName"].get<string>()) {
+                    selected_user = user;
                 }
             }
 
             if (inputUserName == "q") {
                 return nullptr;
-            } else if (!secret.empty()) {
+            }
+            
+            // if there exists a user with inputted username
+            if (!selected_user.empty()) {
                 runUserNameLoop = false;
             } else {
                 printUserNameDoesNotExist();
@@ -48,11 +52,19 @@ User *handleUserLogin(json users) {
 
             if (inputPassword == "q") {
                 return nullptr;
-            } else if (inputPassword == secret) {
+            }
+            
+            if (inputPassword == selected_user["password"].get<string>()) {
                 printLogInSuccess();
                 runPasswordLoop = false;
                 runLogInLoop = false;
-                // set pReturnUser once json implemented
+
+                pReturnUser = new User(
+                        selected_user["userName"].get<string>(),
+                        selected_user["password"].get<string>(),
+                        selected_user["fullName"].get<string>(),
+                        (Role) selected_user["role"].get<int>()
+                    );
             } else {
                 printPasswordIncorrect();
             }
