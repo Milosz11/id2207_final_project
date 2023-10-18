@@ -10,7 +10,7 @@ using json = nlohmann::json;
 
 int main() {
 
-    ifstream ifs("data.json");
+    ifstream ifs("data/data.json");
     json data = json::parse(ifs);
     json users = data["users"];
 
