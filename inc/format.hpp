@@ -3,6 +3,8 @@
 #include <iostream>
 #include <string>
 
+#include "entity_objects.hpp"
+
 using namespace std;
 
 void printBreak();
@@ -22,3 +24,5 @@ void printPasswordPrompt();
 void printPasswordIncorrect();
 
 void printLogInSuccess();
+
+void printMenuOptionString(MenuOption menuOption);

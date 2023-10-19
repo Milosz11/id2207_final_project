@@ -40,3 +40,23 @@ void printPasswordIncorrect() {
 void printLogInSuccess() {
     cout << "- Login successful!" << endl;
 }
+
+void printMenuOptionString(MenuOption menuOption) {
+    switch (menuOption) {
+        case LogIn:
+            cout << "Log in";
+            break;
+        case Quit:
+            cout << "Quit";
+            break;
+        case LogOut:
+            cout << "Log out";
+            break;
+        case RegisterClient:
+            cout << "Register client";
+            break;
+        default:
+            cout << "Unknown";
+            break;
+    }
+}

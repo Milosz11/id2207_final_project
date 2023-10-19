@@ -14,5 +14,27 @@ void User::addUser() {
         };
 }
 
+Role User::getRole() const {
+        return _role;
+}
+
 Client::Client(const string &recordNumber, const string &fullName, const string &phoneNumber) :
         _recordNumber(recordNumber), _fullName(fullName), _phoneNumber(phoneNumber) { }
+
+PermissionMatrix::PermissionMatrix() {
+        _rolePermissions[AdministrationDepartmentManager] = vector<MenuOption> {
+                LogOut
+        };
+        _rolePermissions[SeniorCustomerServiceOfficer] = vector<MenuOption> {
+                LogOut, RegisterClient
+        };
+        _rolePermissions[CustomerService] = vector<MenuOption> {
+                LogOut, RegisterClient
+        };
+        // _rolePermissions[AdministrationDepartmentManager] = vector<MenuOption> {LogOut};
+        // _rolePermissions[AdministrationDepartmentManager] = vector<MenuOption> {LogOut};
+}
+
+const vector<MenuOption> &PermissionMatrix::getPermissions(Role role) {
+        return _rolePermissions[role];
+}

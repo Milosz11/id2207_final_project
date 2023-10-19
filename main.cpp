@@ -21,7 +21,11 @@ int main() {
         return 0;
     }
 
-
+    PermissionMatrix permissionMatrix;
+    MenuOption menuOption = queryMenuOptions(permissionMatrix.getPermissions(pUser->getRole()));
+    if (menuOption == NullOption) {
+        // enter here if no options passed
+    }
 
     delete pUser;
 

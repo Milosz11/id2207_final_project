@@ -2,10 +2,20 @@
 
 #include <string>
 #include <fstream>
+#include <unordered_map>
+#include <vector>
 
 #include "json.hpp"
 
 using namespace std;
+
+enum MenuOption {
+    LogIn,
+    Quit,
+    LogOut,
+    RegisterClient,
+    NullOption
+};
 
 enum Role {
     AdministrationDepartmentManager,
@@ -36,6 +46,8 @@ public:
 
     void addUser();
 
+    Role getRole() const;
+
 private:
     string _userName;
 
@@ -57,5 +69,16 @@ private:
     string _fullName;
 
     string _phoneNumber;
+
+};
+
+class PermissionMatrix {
+public:
+    PermissionMatrix();
+
+    const vector<MenuOption> &getPermissions(Role role);
+
+private:
+    unordered_map<Role, vector<MenuOption>> _rolePermissions;
 
 };

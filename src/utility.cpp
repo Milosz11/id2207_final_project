@@ -75,3 +75,24 @@ User *handleUserLogin(const json &users) {
 
     return pReturnUser;
 }
+
+MenuOption queryMenuOptions(const vector<MenuOption> &options) {
+    if (options.size() == 0) {
+        return NullOption;
+    }
+
+    cout << "Select form the following menu options: " << endl;
+
+    for (int i = 0; i < options.size(); i++) {
+        cout << "- " << (i + 1) << ". ";
+        printMenuOptionString(options[i]);
+        cout << "\n";
+    }
+
+    cout << "> ";
+
+    int selected_option;
+    cin >> selected_option; // should sanitize input
+
+    return options[selected_option - 1];
+}
