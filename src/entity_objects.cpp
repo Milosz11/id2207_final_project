@@ -22,6 +22,9 @@ Client::Client(const string &recordNumber, const string &fullName, const string 
         _recordNumber(recordNumber), _fullName(fullName), _phoneNumber(phoneNumber) { }
 
 PermissionMatrix::PermissionMatrix() {
+        _rolePermissions[GuestUser] = vector<MenuOption> {
+                LogIn, Quit
+        };
         _rolePermissions[AdministrationDepartmentManager] = vector<MenuOption> {
                 LogOut
         };

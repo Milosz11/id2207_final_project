@@ -15,19 +15,52 @@ int main() {
     json users = data["users"];
 
     printGreeting();
-
-    User *pUser = handleUserLogin(users);
-    if (pUser == nullptr) {
-        return 0;
-    }
-
+    
     PermissionMatrix permissionMatrix;
-    MenuOption menuOption = queryMenuOptions(permissionMatrix.getPermissions(pUser->getRole()));
-    if (menuOption == NullOption) {
-        // enter here if no options passed
+    // At the same time, we have a guest user and a logged in user, if any.
+    User *pGuestUser = new User("guest", "guest", "guest", GuestUser);
+    User *pLoggedInUser;
+    // The relative information displayed is based on what pActiveUser points to.
+    // This pointer should not be freed nor the owner of any heap memory.
+    User *pActiveUser = pGuestUser;
+
+    MenuOption selectedMenuOption;
+    bool runMenuLoop = true;
+    while (runMenuLoop) {
+
+        printHorizontalDivider();
+        selectedMenuOption = queryMenuOptionsFromUser(permissionMatrix.getPermissions(pActiveUser->getRole()));
+
+        switch (selectedMenuOption) {
+            case LogIn:
+                pLoggedInUser = handleUserLogin(users);
+                if (pLoggedInUser == nullptr) {
+                    break;
+                }
+                pActiveUser = pLoggedInUser;
+                break;
+            case Quit:
+                runMenuLoop = false;
+                break;
+            case LogOut:
+                pActiveUser = pGuestUser;
+                delete pLoggedInUser;
+                break;
+            case RegisterClient:
+                //
+                break;
+            default:
+                cout << "Menu option not implemented or known! Closing program." << endl;
+                runMenuLoop = false;
+                break;
+        }
     }
 
-    delete pUser;
+    delete pGuestUser;
+    if (pLoggedInUser != nullptr) {
+        delete pLoggedInUser;
+    }
+    pActiveUser = nullptr;
 
     return 0;
 }

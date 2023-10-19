@@ -7,13 +7,11 @@
 
 using namespace std;
 
-void printBreak();
+void printHorizontalDivider();
 
 void printEmptyLine();
 
 void printGreeting();
-
-void printPreLoginMenu();
 
 void printUserNamePrompt();
 

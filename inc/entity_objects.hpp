@@ -18,6 +18,7 @@ enum MenuOption {
 };
 
 enum Role {
+    GuestUser,
     AdministrationDepartmentManager,
     FinancialManager,
     ProductionManager,
