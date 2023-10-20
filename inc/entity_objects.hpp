@@ -82,3 +82,37 @@ private:
     unordered_map<Role, vector<MenuOption>> _rolePermissions;
 
 };
+
+class Event {
+public:
+    Event();
+
+private:
+    string _recordNumber;
+
+    string _clientRecordNumber;
+
+    string _eventType;
+
+    string _startDate;
+
+    string _endDate;
+
+    size_t _expectedNumberAttendees;
+
+    // preferences
+
+    size_t _expectedBudget;
+
+};
+
+class Task {
+public:
+    Task(string eventRecordNumber);
+
+private:
+    string _eventRecordNumber;
+
+    string _assignedSubworkerUsername;
+
+};
