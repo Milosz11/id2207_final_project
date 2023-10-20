@@ -3,15 +3,15 @@
 #include <iostream>
 #include <string>
 
+#include "entity_objects.hpp"
+
 using namespace std;
 
-void printBreak();
+void printHorizontalDivider();
 
 void printEmptyLine();
 
 void printGreeting();
-
-void printPreLoginMenu();
 
 void printUserNamePrompt();
 
@@ -28,3 +28,5 @@ void printClientRecordNoPrompt();
 void printClientNamePrompt();
 
 void printClientTeleNoPrompt();
+
+void printMenuOptionString(MenuOption menuOption);

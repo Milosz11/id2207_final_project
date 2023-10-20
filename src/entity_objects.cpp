@@ -22,6 +22,10 @@ void User::addUser() {
         jsonOut.close();
 }
 
+Role User::getRole() const {
+        return _role;
+}
+
 Client::Client(const string &recordNumber, const string &fullName, const string &phoneNumber) :
         _recordNumber(recordNumber), _fullName(fullName), _phoneNumber(phoneNumber) { }
 
@@ -39,4 +43,25 @@ void Client::addClient() {
         std::ofstream jsonOut("data.json");
         jsonOut << std::setw(4) << data;
         jsonOut.close();
+}
+
+PermissionMatrix::PermissionMatrix() {
+        _rolePermissions[GuestUser] = vector<MenuOption> {
+                LogIn, Quit
+        };
+        _rolePermissions[AdministrationDepartmentManager] = vector<MenuOption> {
+                LogOut
+        };
+        _rolePermissions[SeniorCustomerServiceOfficer] = vector<MenuOption> {
+                LogOut, RegisterClient
+        };
+        _rolePermissions[CustomerService] = vector<MenuOption> {
+                LogOut, RegisterClient
+        };
+        // _rolePermissions[AdministrationDepartmentManager] = vector<MenuOption> {LogOut};
+        // _rolePermissions[AdministrationDepartmentManager] = vector<MenuOption> {LogOut};
+}
+
+const vector<MenuOption> &PermissionMatrix::getPermissions(Role role) {
+        return _rolePermissions[role];
 }

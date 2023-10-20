@@ -1,6 +1,6 @@
 #include "../inc/format.hpp"
 
-void printBreak() {
+void printHorizontalDivider() {
     cout << string(70, '-') << endl;
 }
 
@@ -9,16 +9,9 @@ void printEmptyLine() {
 }
 
 void printGreeting() {
-    printBreak();
+    printHorizontalDivider();
     cout << string(20, ' ') << " Welcome to the SEP system!" << endl;
-    printBreak();
-}
-
-void printPreLoginMenu() {
-    cout << "- Select a menu option:" << endl;
-    cout << "- 1. Login" << endl;
-    cout << "- 2. Quit" << endl;
-    cout << "> ";
+    printHorizontalDivider();
 }
 
 void printUserNamePrompt() {
@@ -51,4 +44,23 @@ void printClientNamePrompt() {
 
 void printClientTeleNoPrompt() {
     cout << "> Client Telephone Number: ";
+}
+void printMenuOptionString(MenuOption menuOption) {
+    switch (menuOption) {
+        case LogIn:
+            cout << "Log in";
+            break;
+        case Quit:
+            cout << "Quit";
+            break;
+        case LogOut:
+            cout << "Log out";
+            break;
+        case RegisterClient:
+            cout << "Register client";
+            break;
+        default:
+            cout << "Unknown";
+            break;
+    }
 }

@@ -4,14 +4,6 @@ User *handleUserLogin(const json &users) {
     
     User *pReturnUser = nullptr;
 
-    printPreLoginMenu();
-    string inputOption;
-    cin >> inputOption;
-
-    if (inputOption == "2") {
-        return nullptr;
-    }
-
     // log in loop
     bool runLogInLoop = true;
     while (runLogInLoop) {
@@ -23,9 +15,14 @@ User *handleUserLogin(const json &users) {
 
         // user name loop
         while (runUserNameLoop) {
+            cin.clear();
             printUserNamePrompt();
             cin >> inputUserName;
             
+            if (inputUserName == "q") {
+                return nullptr;
+            }
+
             // find json user object referring to passed username
             for (auto user : users) {
                 if (inputUserName == user["userName"].get<string>()) {
@@ -33,10 +30,6 @@ User *handleUserLogin(const json &users) {
                 }
             }
 
-            if (inputUserName == "q") {
-                return nullptr;
-            }
-            
             // if there exists a user with inputted username
             if (!selected_user.empty()) {
                 runUserNameLoop = false;
@@ -69,8 +62,6 @@ User *handleUserLogin(const json &users) {
                 printPasswordIncorrect();
             }
         }
-
-        printBreak();
     }
 
     return pReturnUser;
@@ -101,4 +92,60 @@ void registerClient() {
 
         delete tmpClient;
     }
-} 
+}
+
+MenuOption queryMenuOptionsFromUser(const vector<MenuOption> &options) {
+    if (options.size() == 0) {
+        return NullOption;
+    }
+
+    cout << "Select from the following menu options: " << endl;
+
+    for (int i = 0; i < options.size(); i++) {
+        cout << "- " << (i + 1) << ". ";
+        printMenuOptionString(options[i]);
+        cout << endl;
+    }
+
+    int selectedOption = getIntFromUser(1, options.size());
+
+    return options[selectedOption - 1];
+}
+
+int getIntFromUser(int minValue, int maxValue) {
+    if (minValue > maxValue) {
+        swap(minValue, maxValue);
+    }
+
+    string inputString;
+    int inputInt = 0;
+
+    bool runMainLoop = true;
+    while (runMainLoop) {
+        cout << "> ";
+        cin >> inputString;
+
+        bool isInt = true;
+        for (size_t i = 0; i < inputString.size(); i++) {
+            if (!isdigit(inputString[i])) {
+                isInt = false;
+                break;
+            }
+        }
+
+        if (!isInt) {
+            cout << "- Incorrect input. Try again." << endl;
+            continue;
+        }
+
+        inputInt = stoi(inputString);
+        if (inputInt < minValue || inputInt > maxValue) {
+            cout << "- Incorrect input. Try again." << endl;
+            continue;
+        }
+
+        runMainLoop = false;
+    }
+
+    return inputInt;
+}
