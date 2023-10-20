@@ -1,4 +1,4 @@
-#include "../inc/utility.hpp"
+#include "../inc/data_handlers.hpp"
 
 User *handleUserLogin(const json &users) {
     
@@ -83,88 +83,4 @@ void registerClient() {
 
     Client tmpClient(inputClientRecordNo, inputClientName, inputClientTelephone);
     tmpClient.addClient();
-}
-
-MenuOption queryMenuOptionsFromUser(const vector<MenuOption> &options) {
-    if (options.size() == 0) {
-        return NullOption;
-    }
-
-    cout << "Select from the following menu options: " << endl;
-
-    for (int i = 0; i < options.size(); i++) {
-        cout << "- " << (i + 1) << ". ";
-        printMenuOptionString(options[i]);
-        cout << endl;
-    }
-
-    int selectedOption = getIntFromUser(1, options.size());
-
-    return options[selectedOption - 1];
-}
-
-int getIntFromUser(int minValue, int maxValue) {
-    if (minValue > maxValue) {
-        swap(minValue, maxValue);
-    }
-
-    string inputString;
-    int inputInt = 0;
-
-    bool runMainLoop = true;
-    while (runMainLoop) {
-        cout << "> ";
-        cin >> inputString;
-
-        bool isInt = true;
-        for (size_t i = 0; i < inputString.size(); i++) {
-            if (!isdigit(inputString[i])) {
-                isInt = false;
-                break;
-            }
-        }
-
-        if (!isInt) {
-            cout << "- Incorrect input. Try again." << endl;
-            continue;
-        }
-
-        inputInt = stoi(inputString);
-        if (inputInt < minValue || inputInt > maxValue) {
-            cout << "- Incorrect input. Try again." << endl;
-            continue;
-        }
-
-        runMainLoop = false;
-    }
-
-    return inputInt;
-}
-
-string getStringFromUserBetweenLength(int minLength, int maxLength) {
-    if (minLength > maxLength) {
-        swap(minLength, maxLength);
-    }
-
-    string inputString;
-
-    bool runMainLoop = true;
-    while (runMainLoop) {
-        cout << "> ";
-        cin >> inputString;
-
-        if (inputString.size() < minLength) {
-            cout << "Input is too short. Please try again." << endl;
-            continue;
-        }
-
-        if (inputString.size() > maxLength) {
-            cout << "Input is too long. Please try again." << endl;
-            continue;
-        }
-
-        runMainLoop = false;
-    }
-
-    return inputString;
 }
