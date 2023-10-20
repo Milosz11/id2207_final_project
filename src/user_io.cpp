@@ -1,6 +1,7 @@
 #include "../inc/user_io.hpp"
 
 void printHorizontalDivider() {
+    cout << "\033[1;32m" << endl;
     cout << string(70, '-') << endl;
 }
 
@@ -135,7 +136,7 @@ string getStringFromUserBetweenLength(int minLength, int maxLength) {
 
     bool runMainLoop = true;
     while (runMainLoop) {
-        cout << "> ";
+        cout << " ";
         cin >> inputString;
 
         if (inputString.size() < minLength) {

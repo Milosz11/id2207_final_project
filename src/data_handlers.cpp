@@ -81,6 +81,21 @@ void registerClient() {
     printClientTeleNoPrompt();
     inputClientTelephone = getStringFromUserBetweenLength(9, 14);
 
-    Client tmpClient(inputClientRecordNo, inputClientName, inputClientTelephone);
-    tmpClient.addClient();
+    json client = {
+        {"recordNumber", inputClientRecordNo},
+        {"fullName", inputClientName},
+        {"phoneNumber", inputClientTelephone}
+    };
+
+    addObjectToJson("clients", client);
+}
+
+void addObjectToJson(const string entity, const json object) {
+
+        ifstream ifs("data/data.json");
+        json data = json::parse(ifs);
+        data[entity].push_back(object);
+        std::ofstream jsonOut("data/data.json");
+        jsonOut << std::setw(4) << data;
+        jsonOut.close();
 }

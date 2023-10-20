@@ -46,8 +46,6 @@ class User {
 public:
     User(const string &userName, const string &password, const string &fullName, Role role);
 
-    void addUser();
-
     Role getRole() const;
 
 private:
@@ -64,8 +62,6 @@ private:
 class Client {
 public:
     Client(const string &recordNumber, const string &fullName, const string &phoneNumber);
-
-    void addClient();
 
 private:
     string _recordNumber;

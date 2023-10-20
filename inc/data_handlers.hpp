@@ -18,3 +18,5 @@ User *handleUserLogin(const json &users);
  * Encapsulate the functionality for registering a client into the system
 */
 void registerClient();
+
+void addObjectToJson(string entity, json object);
