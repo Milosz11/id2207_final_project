@@ -75,3 +75,30 @@ User *handleUserLogin(const json &users) {
 
     return pReturnUser;
 }
+
+void registerClient() {
+    Client *tmpClient = nullptr;
+
+    bool runClientRegisterLoop = true;
+    while (runClientRegisterLoop) {
+        string inputClientRecordNo;
+        string inputClientName;
+        string inputClientTelephone;
+
+        printClientRecordNoPrompt();
+        cin >> inputClientRecordNo;
+
+        printClientNamePrompt();
+        cin >> inputClientName;
+
+        printClientTeleNoPrompt();
+        cin >> inputClientTelephone;
+
+        runClientRegisterLoop = false;
+
+        tmpClient = new Client (inputClientRecordNo, inputClientName, inputClientTelephone);
+        tmpClient->addClient();
+
+        delete tmpClient;
+    }
+} 

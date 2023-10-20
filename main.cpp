@@ -20,10 +20,11 @@ int main() {
     if (pUser == nullptr) {
         return 0;
     }
-
-
+    // pUser->addUser();
 
     delete pUser;
+
+    registerClient();
 
     return 0;
 }

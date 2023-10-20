@@ -1,28 +1,35 @@
 {
+    "clients": [
+        {
+            "fullName": "New",
+            "phoneNumber": "Client",
+            "recordNumber": "ad1234"
+        }
+    ],
     "users": [
         {
-            "userName": "user",
-            "password": "password",
             "fullName": "John Doe",
-            "role": 1
+            "password": "password",
+            "role": 1,
+            "userName": "user"
         },
         {
-            "userName": "mildab",
-            "password": "password",
             "fullName": "Milosz Dabrowski",
-            "role": 10
+            "password": "password",
+            "role": 10,
+            "userName": "mildab"
         },
         {
-            "userName": "bhashu",
-            "password": "password",
             "fullName": "Bhavya Shukla",
-            "role": 11
+            "password": "password",
+            "role": 11,
+            "userName": "bhashu"
         },
         {
-            "userName": "mike1",
-            "password": "password",
             "fullName": "Mike",
-            "role": 0
+            "password": "password",
+            "role": 0,
+            "userName": "mike1"
         }
     ]
 }

@@ -22,3 +22,9 @@ void printPasswordPrompt();
 void printPasswordIncorrect();
 
 void printLogInSuccess();
+
+void printClientRecordNoPrompt();
+
+void printClientNamePrompt();
+
+void printClientTeleNoPrompt();

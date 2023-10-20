@@ -40,3 +40,15 @@ void printPasswordIncorrect() {
 void printLogInSuccess() {
     cout << "- Login successful!" << endl;
 }
+
+void printClientRecordNoPrompt() {
+    cout << "> Client Record Number: ";
+}
+
+void printClientNamePrompt() {
+    cout << "> Client Name: ";
+}
+
+void printClientTeleNoPrompt() {
+    cout << "> Client Telephone Number: ";
+}

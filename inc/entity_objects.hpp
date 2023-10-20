@@ -51,6 +51,8 @@ class Client {
 public:
     Client(const string &recordNumber, const string &fullName, const string &phoneNumber);
 
+    void addClient();
+
 private:
     string _recordNumber;
 
