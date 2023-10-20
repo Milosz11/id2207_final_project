@@ -23,12 +23,6 @@ User *handleUserLogin(const json &users);
 
 /**
  * Encapsulate the functionality for registering a client into the system
- * 
- * @param 
- * 
- * @return a nullptr if the user wants to quit the program prematurely, or a
- *  Client pointer to the heap allocated Client object. The caller is responsible
- *  for freeing the pointer.
 */
 void registerClient();
 
@@ -50,3 +44,13 @@ MenuOption queryMenuOptionsFromUser(const vector<MenuOption> &options);
  * @return user inputted int in [minValue, maxValue]
 */
 int getIntFromUser(int minValue, int maxValue);
+
+/**
+ * Get a string from the user, ensuring its length is between the provided parameters.
+ * 
+ * @param minLength inclusive
+ * @param maxLength inclusive
+ * 
+ * @return the user inputted string
+*/
+string getStringFromUserBetweenLength(int minLength, int maxLength);

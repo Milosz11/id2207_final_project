@@ -1,7 +1,5 @@
 #include "../inc/entity_objects.hpp"
 
-using json = nlohmann::json;
-
 User::User(const string &userName, const string &password, const string &fullName, Role role) :
         _userName(userName), _password(password), _fullName(fullName), _role(role) { }
 
@@ -31,7 +29,7 @@ Client::Client(const string &recordNumber, const string &fullName, const string 
 
 void Client::addClient() {
 
-        ifstream ifs("data.json");
+        ifstream ifs("data/data.json");
         json data = json::parse(ifs);
 
         json client = {
@@ -40,9 +38,11 @@ void Client::addClient() {
                 {"phoneNumber", this->_phoneNumber}
         };
         data["clients"].push_back(client);
-        std::ofstream jsonOut("data.json");
+        std::ofstream jsonOut("data/data.json");
         jsonOut << std::setw(4) << data;
         jsonOut.close();
+
+        // cout << "PLACEHOLDER: client add success" << endl;
 }
 
 PermissionMatrix::PermissionMatrix() {

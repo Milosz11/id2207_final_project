@@ -45,6 +45,11 @@ void printClientNamePrompt() {
 void printClientTeleNoPrompt() {
     cout << "> Client Telephone Number: ";
 }
+
+void printAddClientSuccess() {
+    cout << "Client successfully registered." << endl;
+}
+
 void printMenuOptionString(MenuOption menuOption) {
     switch (menuOption) {
         case LogIn:

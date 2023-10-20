@@ -1,28 +1,35 @@
 {
-	"users": [
-		{
-			"userName": "user",
-			"password": "password",
-			"fullName": "John Doe",
-			"role": 5
-		},
-		{
-			"userName": "mildab",
-			"password": "password",
-			"fullName": "Milosz Dabrowski",
-			"role": 10
-		},
-		{
-			"userName": "bhashu",
-			"password": "password",
-			"fullName": "Bhavya Shukla",
-			"role": 11
-		},
-		{
-			"userName": "mike1",
-			"password": "password",
-			"fullName": "Mike",
-			"role": 0
-		}
-	]
+    "clients": [
+        {
+            "fullName": "elon",
+            "phoneNumber": "123242134",
+            "recordNumber": "abcdef"
+        }
+    ],
+    "users": [
+        {
+            "fullName": "John Doe",
+            "password": "password",
+            "role": 5,
+            "userName": "user"
+        },
+        {
+            "fullName": "Milosz Dabrowski",
+            "password": "password",
+            "role": 10,
+            "userName": "mildab"
+        },
+        {
+            "fullName": "Bhavya Shukla",
+            "password": "password",
+            "role": 11,
+            "userName": "bhashu"
+        },
+        {
+            "fullName": "Mike",
+            "password": "password",
+            "role": 0,
+            "userName": "mike1"
+        }
+    ]
 }

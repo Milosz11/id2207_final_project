@@ -68,30 +68,21 @@ User *handleUserLogin(const json &users) {
 }
 
 void registerClient() {
-    Client *tmpClient = nullptr;
+    string inputClientRecordNo;
+    string inputClientName;
+    string inputClientTelephone;
 
-    bool runClientRegisterLoop = true;
-    while (runClientRegisterLoop) {
-        string inputClientRecordNo;
-        string inputClientName;
-        string inputClientTelephone;
+    printClientRecordNoPrompt();
+    inputClientRecordNo = getStringFromUserBetweenLength(6, 8);
 
-        printClientRecordNoPrompt();
-        cin >> inputClientRecordNo;
+    printClientNamePrompt();
+    inputClientName = getStringFromUserBetweenLength(1, 1024);
 
-        printClientNamePrompt();
-        cin >> inputClientName;
+    printClientTeleNoPrompt();
+    inputClientTelephone = getStringFromUserBetweenLength(9, 14);
 
-        printClientTeleNoPrompt();
-        cin >> inputClientTelephone;
-
-        runClientRegisterLoop = false;
-
-        tmpClient = new Client (inputClientRecordNo, inputClientName, inputClientTelephone);
-        tmpClient->addClient();
-
-        delete tmpClient;
-    }
+    Client tmpClient(inputClientRecordNo, inputClientName, inputClientTelephone);
+    tmpClient.addClient();
 }
 
 MenuOption queryMenuOptionsFromUser(const vector<MenuOption> &options) {
@@ -148,4 +139,32 @@ int getIntFromUser(int minValue, int maxValue) {
     }
 
     return inputInt;
+}
+
+string getStringFromUserBetweenLength(int minLength, int maxLength) {
+    if (minLength > maxLength) {
+        swap(minLength, maxLength);
+    }
+
+    string inputString;
+
+    bool runMainLoop = true;
+    while (runMainLoop) {
+        cout << "> ";
+        cin >> inputString;
+
+        if (inputString.size() < minLength) {
+            cout << "Input is too short. Please try again." << endl;
+            continue;
+        }
+
+        if (inputString.size() > maxLength) {
+            cout << "Input is too long. Please try again." << endl;
+            continue;
+        }
+
+        runMainLoop = false;
+    }
+
+    return inputString;
 }

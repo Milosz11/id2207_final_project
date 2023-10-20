@@ -45,9 +45,10 @@ int main() {
             case LogOut:
                 pActiveUser = pGuestUser;
                 delete pLoggedInUser;
+                pLoggedInUser = nullptr;
                 break;
             case RegisterClient:
-                //
+                registerClient();
                 break;
             default:
                 cout << "Menu option not implemented or known! Closing program." << endl;
@@ -57,9 +58,6 @@ int main() {
     }
 
     delete pGuestUser;
-    if (pLoggedInUser != nullptr) {
-        delete pLoggedInUser;
-    }
     pActiveUser = nullptr;
 
     return 0;

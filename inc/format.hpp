@@ -29,4 +29,8 @@ void printClientNamePrompt();
 
 void printClientTeleNoPrompt();
 
+void printAddClientSuccess();
+
+// printAddUserSuccess
+
 void printMenuOptionString(MenuOption menuOption);

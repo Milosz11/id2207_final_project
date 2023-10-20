@@ -8,6 +8,7 @@
 #include "json.hpp"
 
 using namespace std;
+using json = nlohmann::json;
 
 enum MenuOption {
     LogIn,
