@@ -48,22 +48,49 @@ void printClientTeleNoPrompt() {
 }
 
 void printAddClientSuccess() {
-    cout << "Client successfully registered." << endl;
+    cout << "-Client successfully registered." << endl;
+}
+
+void printEventRecordNoPrompt() {
+    cout << "> Event Record Number: ";
+}
+
+void printEventTypePrompt() {
+    cout << "> Event Type: ";
+}
+
+void printStartDatePrompt() {
+    cout << "> Start Date (dd/mm/yy): ";
+}
+
+void printEndDatePrompt() {
+    cout << "> End Date (dd/mm/yy): ";
+}
+
+void printExpectedNumAttendeesPrompt() {
+    cout << "> Expected Number Of Attendees: ";
+}
+
+void printExpectedBudgetPrompt() {
+    cout << "> Expected Budget: ";
 }
 
 void printMenuOptionString(MenuOption menuOption) {
     switch (menuOption) {
-        case LogIn:
+        case MO_LogIn:
             cout << "Log in";
             break;
-        case Quit:
+        case MO_Quit:
             cout << "Quit";
             break;
-        case LogOut:
+        case MO_LogOut:
             cout << "Log out";
             break;
-        case RegisterClient:
+        case MO_RegisterClient:
             cout << "Register client";
+            break;
+        case MO_CreateOrUpdateEvent:
+            cout << "Add event";
             break;
         default:
             cout << "Unknown";
@@ -73,7 +100,7 @@ void printMenuOptionString(MenuOption menuOption) {
 
 MenuOption queryMenuOptionsFromUser(const vector<MenuOption> &options) {
     if (options.size() == 0) {
-        return NullOption;
+        return MO_NullOption;
     }
 
     cout << "Select from the following menu options: " << endl;
@@ -99,7 +126,7 @@ int getIntFromUser(int minValue, int maxValue) {
 
     bool runMainLoop = true;
     while (runMainLoop) {
-        cout << "> ";
+        // cout << "> ";
         cin >> inputString;
 
         bool isInt = true;
@@ -111,13 +138,13 @@ int getIntFromUser(int minValue, int maxValue) {
         }
 
         if (!isInt) {
-            cout << "- Incorrect input. Try again." << endl;
+            cout << "- Incorrect input. Try again." << endl << "> ";
             continue;
         }
 
         inputInt = stoi(inputString);
         if (inputInt < minValue || inputInt > maxValue) {
-            cout << "- Incorrect input. Try again." << endl;
+            cout << "- Incorrect input. Try again." << endl << "> ";
             continue;
         }
 
@@ -136,20 +163,39 @@ string getStringFromUserBetweenLength(int minLength, int maxLength) {
 
     bool runMainLoop = true;
     while (runMainLoop) {
-        cout << " ";
         cin >> inputString;
 
         if (inputString.size() < minLength) {
-            cout << "Input is too short. Please try again." << endl;
+            cout << "- Input is too short. Please try again." << endl << "> ";
             continue;
         }
 
         if (inputString.size() > maxLength) {
-            cout << "Input is too long. Please try again." << endl;
+            cout << "- Input is too long. Please try again." << endl << "> ";
             continue;
         }
 
         runMainLoop = false;
+    }
+
+    return inputString;
+}
+
+string getDateStringFromUser() {
+    cin.ignore(numeric_limits<streamsize>::max(), '\n'); // https://gist.github.com/leimao/418395bf920eb70b2b11fe89d7c1f738
+    string inputString;
+
+    bool runLoop = true;
+    while (runLoop) {
+        cin >> inputString;
+
+        if (inputString.size() != 8) {
+            cout << "- Incorrect format. Please try again." << endl;
+            cout << "> dd/mm/yy: ";
+            continue;
+        }
+
+        runLoop = false;
     }
 
     return inputString;

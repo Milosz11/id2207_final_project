@@ -73,7 +73,9 @@ void registerClient() {
     string inputClientTelephone;
 
     printClientRecordNoPrompt();
-    inputClientRecordNo = getStringFromUserBetweenLength(6, 8);
+    inputClientRecordNo = getStringFromUserBetweenLength(
+        CLIENT_RECORD_NO_MIN_LENGTH, CLIENT_RECORD_NO_MAX_LENGTH
+    );
 
     printClientNamePrompt();
     inputClientName = getStringFromUserBetweenLength(1, 1024);
@@ -88,6 +90,58 @@ void registerClient() {
     };
 
     addObjectToJson("clients", client);
+}
+
+void createOrUpdateEvent() {
+    string inputRecordNumber;
+    string inputClientRecordNumber;
+    string inputEventType;
+    string inputStartDate;
+    string inputEndDate;
+    int inputExpectedNumberAttendees;
+    // preferences
+    int inputExpectedBugdet;
+
+    // we could implement checks that the client record number exists
+
+    printEventRecordNoPrompt();
+    inputRecordNumber = getStringFromUserBetweenLength(
+        EVENT_RECORD_NO_MIN_LENGTH, EVENT_RECORD_NO_MAX_LENGTH
+    );
+
+    printClientRecordNoPrompt();
+    inputClientRecordNumber = getStringFromUserBetweenLength(
+        CLIENT_RECORD_NO_MIN_LENGTH, CLIENT_RECORD_NO_MAX_LENGTH
+    );
+
+    printEventTypePrompt();
+    inputEventType = getStringFromUserBetweenLength(1, 1024);
+
+    printStartDatePrompt();
+    inputStartDate = getDateStringFromUser();
+
+    printEndDatePrompt();
+    inputEndDate = getDateStringFromUser();
+
+    printExpectedNumAttendeesPrompt();
+    inputExpectedNumberAttendees = getIntFromUser(0, 100000);
+
+    printExpectedBudgetPrompt();
+    inputExpectedBugdet = getIntFromUser(0, 100000000);
+
+    // query for event preferences
+
+    json event = {
+        {"recordNumber", inputRecordNumber},
+        {"clientRecordNumber", inputClientRecordNumber},
+        {"eventType", inputEventType},
+        {"startDate", inputStartDate},
+        {"endDate", inputEndDate},
+        {"expectedNumberAttendees", inputExpectedNumberAttendees},
+        {"expectedBudget", inputExpectedBugdet}
+    };
+
+    addObjectToJson("events", event);
 }
 
 void addObjectToJson(const string entity, const json object) {

@@ -12,16 +12,16 @@ Client::Client(const string &recordNumber, const string &fullName, const string 
 
 PermissionMatrix::PermissionMatrix() {
         _rolePermissions[GuestUser] = vector<MenuOption> {
-                LogIn, Quit
+                MO_LogIn, MO_Quit
         };
         _rolePermissions[AdministrationDepartmentManager] = vector<MenuOption> {
-                LogOut
+                MO_LogOut
         };
         _rolePermissions[SeniorCustomerServiceOfficer] = vector<MenuOption> {
-                LogOut, RegisterClient
+                MO_LogOut, MO_RegisterClient, MO_CreateOrUpdateEvent
         };
         _rolePermissions[CustomerService] = vector<MenuOption> {
-                LogOut, RegisterClient
+                MO_LogOut, MO_RegisterClient
         };
         // _rolePermissions[AdministrationDepartmentManager] = vector<MenuOption> {LogOut};
         // _rolePermissions[AdministrationDepartmentManager] = vector<MenuOption> {LogOut};

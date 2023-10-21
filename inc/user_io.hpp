@@ -31,6 +31,18 @@ void printClientTeleNoPrompt();
 
 void printAddClientSuccess();
 
+void printEventRecordNoPrompt();
+
+void printEventTypePrompt();
+
+void printStartDatePrompt();
+
+void printEndDatePrompt();
+
+void printExpectedNumAttendeesPrompt();
+
+void printExpectedBudgetPrompt();
+
 // printAddUserSuccess
 
 void printMenuOptionString(MenuOption menuOption);
@@ -63,3 +75,10 @@ int getIntFromUser(int minValue, int maxValue);
  * @return the user inputted string
 */
 string getStringFromUserBetweenLength(int minLength, int maxLength);
+
+/**
+ * Prompts the user to enter a date with the format: dd/mm/yy
+ * 
+ * @return a string of the date formatted like dd/mm/yy
+*/
+string getDateStringFromUser();

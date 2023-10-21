@@ -32,23 +32,26 @@ int main() {
         selectedMenuOption = queryMenuOptionsFromUser(permissionMatrix.getPermissions(pActiveUser->getRole()));
 
         switch (selectedMenuOption) {
-            case LogIn:
+            case MO_LogIn:
                 pLoggedInUser = handleUserLogin(users);
                 if (pLoggedInUser == nullptr) {
                     break;
                 }
                 pActiveUser = pLoggedInUser;
                 break;
-            case Quit:
+            case MO_Quit:
                 runMenuLoop = false;
                 break;
-            case LogOut:
+            case MO_LogOut:
                 pActiveUser = pGuestUser;
                 delete pLoggedInUser;
                 pLoggedInUser = nullptr;
                 break;
-            case RegisterClient:
+            case MO_RegisterClient:
                 registerClient();
+                break;
+            case MO_CreateOrUpdateEvent:
+                createOrUpdateEvent();
                 break;
             default:
                 cout << "Menu option not implemented or known! Closing program." << endl;

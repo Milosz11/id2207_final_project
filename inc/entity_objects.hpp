@@ -11,11 +11,12 @@ using namespace std;
 using json = nlohmann::json;
 
 enum MenuOption {
-    LogIn,
-    Quit,
-    LogOut,
-    RegisterClient,
-    NullOption
+    MO_LogIn,
+    MO_Quit,
+    MO_LogOut,
+    MO_RegisterClient,
+    MO_CreateOrUpdateEvent,
+    MO_NullOption
 };
 
 enum Role {
@@ -40,6 +41,14 @@ enum Role {
     VicePresident,
     Secretary,
     Accountant
+};
+
+enum EventPreference {
+    EP_Decorations,
+    EP_BreakfastLunchDinner,
+    EP_Parties,
+    EP_SoftHotDrinks,
+    EP_PhotosFilming
 };
 
 class User {
@@ -100,7 +109,7 @@ private:
 
     size_t _expectedNumberAttendees;
 
-    // preferences
+    vector<EventPreference> _preferences;
 
     size_t _expectedBudget;
 
