@@ -99,8 +99,8 @@ void createOrUpdateEvent() {
     string inputStartDate;
     string inputEndDate;
     int inputExpectedNumberAttendees;
-    // preferences
     int inputExpectedBugdet;
+    vector<EventPreference> inputEventPreferences;
 
     // we could implement checks that the client record number exists
 
@@ -129,7 +129,7 @@ void createOrUpdateEvent() {
     printExpectedBudgetPrompt();
     inputExpectedBugdet = getIntFromUser(0, 100000000);
 
-    // query for event preferences
+    queryEventPreferencesFromUser(inputEventPreferences);
 
     json event = {
         {"recordNumber", inputRecordNumber},
@@ -138,10 +138,12 @@ void createOrUpdateEvent() {
         {"startDate", inputStartDate},
         {"endDate", inputEndDate},
         {"expectedNumberAttendees", inputExpectedNumberAttendees},
-        {"expectedBudget", inputExpectedBugdet}
+        {"expectedBudget", inputExpectedBugdet},
+        {"eventPreferences", inputEventPreferences}
     };
 
     addObjectToJson("events", event);
+    printUpdateOrCreateEventSuccess();
 }
 
 void addObjectToJson(const string entity, const json object) {

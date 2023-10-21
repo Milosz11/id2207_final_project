@@ -75,6 +75,10 @@ void printExpectedBudgetPrompt() {
     cout << "> Expected Budget: ";
 }
 
+void printUpdateOrCreateEventSuccess() {
+    cout << "- Event successfully created/updated!" << endl;
+}
+
 void printMenuOptionString(MenuOption menuOption) {
     switch (menuOption) {
         case MO_LogIn:
@@ -98,12 +102,35 @@ void printMenuOptionString(MenuOption menuOption) {
     }
 }
 
+void printEventPreferenceString(EventPreference eventPreference) {
+    switch (eventPreference) {
+        case EP_Decorations:
+            cout << "Decorations";
+            break;
+        case EP_BreakfastLunchDinner:
+            cout << "Breakfast, lunch, dinner";
+            break;
+        case EP_Parties:
+            cout << "Parties";
+            break;
+        case EP_SoftHotDrinks:
+            cout << "Soft/hot drinks";
+            break;
+        case EP_PhotosFilming:
+            cout << "Photos/filming";
+            break;
+        default:
+            cout << "Unknown";
+            break;
+    }
+}
+
 MenuOption queryMenuOptionsFromUser(const vector<MenuOption> &options) {
     if (options.size() == 0) {
         return MO_NullOption;
     }
 
-    cout << "Select from the following menu options: " << endl;
+    cout << "Select from the following menu options:" << endl;
 
     for (int i = 0; i < options.size(); i++) {
         cout << "- " << (i + 1) << ". ";
@@ -114,6 +141,36 @@ MenuOption queryMenuOptionsFromUser(const vector<MenuOption> &options) {
     int selectedOption = getIntFromUser(1, options.size());
 
     return options[selectedOption - 1];
+}
+
+void queryEventPreferencesFromUser(vector<EventPreference> &selectedPreferences) {
+    selectedPreferences.empty();
+
+    vector<EventPreference> preferencesToDisplay = {
+        EP_Decorations, EP_BreakfastLunchDinner, EP_Parties, EP_SoftHotDrinks, EP_PhotosFilming
+    };
+
+    bool runQueryLoop = true;
+    while (runQueryLoop) {
+        cout << "Select which preferences to add for the event (0. to finish):" << endl;
+        for (int i = 0; i < preferencesToDisplay.size(); i++) {
+            cout << "- " << (i + 1) << ". ";
+            printEventPreferenceString(preferencesToDisplay[i]);
+            cout << endl;
+        }
+
+        int selectedOptionNumber = getIntFromUser(0, preferencesToDisplay.size());
+        if (selectedOptionNumber == 0) {
+            runQueryLoop = false;
+            break;
+        }
+
+        int selectedOptionIndex = selectedOptionNumber - 1;
+
+        EventPreference selectedEP = preferencesToDisplay[selectedOptionIndex];
+        preferencesToDisplay.erase(preferencesToDisplay.begin() + selectedOptionIndex);
+        selectedPreferences.push_back(selectedEP);
+    }
 }
 
 int getIntFromUser(int minValue, int maxValue) {

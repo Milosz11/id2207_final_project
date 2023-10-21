@@ -45,16 +45,29 @@ void printExpectedBudgetPrompt();
 
 // printAddUserSuccess
 
+void printUpdateOrCreateEventSuccess();
+
 void printMenuOptionString(MenuOption menuOption);
+
+void printEventPreferenceString(EventPreference eventPreference);
 
 /**
  * Display a list of menu options to the user and return the selected one.
  * 
  * @param options vector of menu options to display
  * 
- * @return the menu option selected by the user, or NullOption in the case of an empty input vector
+ * @return the menu option selected by the user, or MO_NullOption in the case of an empty input vector
 */
 MenuOption queryMenuOptionsFromUser(const vector<MenuOption> &options);
+
+/**
+ * Queries the user for event preferences and updates the passed vector in place with the 
+ * preferences the user selects
+ * 
+ * @param selectedPreferences after the function call, is updated with the event preferences
+ * the user selects
+*/
+void queryEventPreferencesFromUser(vector<EventPreference> &selectedPreferences);
 
 /**
  * Gets an integer value input from the user in the range [minValue, maxValue].
