@@ -47,6 +47,10 @@ void printExpectedBudgetPrompt();
 
 void printUpdateOrCreateEventSuccess();
 
+void printLoggedInUser(const string &userName, Role role);
+
+string RoleToString(Role role);
+
 void printMenuOptionString(MenuOption menuOption);
 
 void printEventPreferenceString(EventPreference eventPreference);

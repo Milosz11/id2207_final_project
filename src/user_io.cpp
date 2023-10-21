@@ -79,6 +79,83 @@ void printUpdateOrCreateEventSuccess() {
     cout << "- Event successfully created/updated!" << endl;
 }
 
+void printLoggedInUser(const string &userName, Role role) {
+    cout << "You are logged in as: " << userName << " (" << RoleToString(role) << ")" << endl;
+}
+
+string RoleToString(Role role) {
+    switch (role) {
+        case GuestUser:
+            return "Guest";
+            break;
+        case AdministrationDepartmentManager:
+            return "Administration Department Manager";
+            break;
+        case FinancialManager:
+            return "Financial Manager";
+            break;
+        case ProductionManager:
+            return "Production Manager";
+            break;
+        case ServicesManager:
+            return "Services Manager";
+            break;
+        case SeniorCustomerServiceOfficer:
+            return "Senior Customer Service Officer";
+            break;
+        case CustomerService:
+            return "Customer Service";
+            break;
+        case MarketingOfficer:
+            return "Marketing Officer";
+            break;
+        case MarketingAssistant:
+            return "Marketing Assistant";
+            break;
+        case SeniorHRManager:
+            return "Senior HR Manager";
+            break;
+        case HRAssistant:
+            return "HR Assistant";
+            break;
+        case Photographer:
+            return "Photographer";
+            break;
+        case AudioSpecialist:
+            return "Audio Specialist";
+            break;
+        case GraphicDesigner:
+            return "Graphic Designer";
+            break;
+        case Decorations:
+            return "Decorations";
+            break;
+        case ComputerRelated:
+            return "Computer Related";
+            break;
+        case Chef:
+            return "Chef";
+            break;
+        case Waiter:
+            return "Waiter";
+            break;
+        case VicePresident:
+            return "Vice President";
+            break;
+        case Secretary:
+            return "Secretary";
+            break;
+        case Accountant:
+            return "Accountant";
+            break;
+        default:
+            return "Unknown";
+            break;
+    }
+
+    return "Unknown";
+}
+
 void printMenuOptionString(MenuOption menuOption) {
     switch (menuOption) {
         case MO_LogIn:

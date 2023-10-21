@@ -29,6 +29,7 @@ int main() {
     while (runMenuLoop) {
 
         printHorizontalDivider();
+        printLoggedInUser(pActiveUser->getUserName(), pActiveUser->getRole());
         selectedMenuOption = queryMenuOptionsFromUser(permissionMatrix.getPermissions(pActiveUser->getRole()));
 
         switch (selectedMenuOption) {

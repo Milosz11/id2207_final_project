@@ -55,6 +55,8 @@ class User {
 public:
     User(const string &userName, const string &password, const string &fullName, Role role);
 
+    string getUserName() const;
+
     Role getRole() const;
 
 private:
