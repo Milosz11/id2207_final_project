@@ -29,4 +29,9 @@ void registerClient();
 */
 void createOrUpdateEvent();
 
+/**
+ * Prompt the user for details about creating or updating a task, then update json file
+*/
+void createOrUpdateTask();
+
 void addObjectToJson(string entity, json object);

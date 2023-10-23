@@ -26,10 +26,10 @@ PermissionMatrix::PermissionMatrix() {
                 MO_LogOut, MO_CreateOrUpdateEvent
         };
         _rolePermissions[ProductionManager] = vector<MenuOption> {
-                MO_LogOut
+                MO_LogOut, MO_CreateOrUpdateTask
         };
         _rolePermissions[ServicesManager] = vector<MenuOption> {
-                MO_LogOut
+                MO_LogOut, MO_CreateOrUpdateTask
         };
         _rolePermissions[SeniorCustomerServiceOfficer] = vector<MenuOption> {
                 MO_LogOut, MO_RegisterClient, MO_CreateOrUpdateEvent

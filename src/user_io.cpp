@@ -75,6 +75,14 @@ void printExpectedBudgetPrompt() {
     cout << "> Expected Budget: ";
 }
 
+void printAssignedSubworkerUsername() {
+    cout << "> Assign to: ";
+}
+
+void printTaskDescription() {
+    cout << "> Task Description: ";
+}
+
 void printUpdateOrCreateEventSuccess() {
     cout << "- Event successfully created/updated!" << endl;
 }
@@ -173,6 +181,9 @@ void printMenuOptionString(MenuOption menuOption) {
         case MO_CreateOrUpdateEvent:
             cout << "Add event";
             break;
+        case MO_CreateOrUpdateTask:
+            cout << "Add task";
+            break;
         default:
             cout << "Unknown";
             break;
@@ -250,6 +261,20 @@ void queryEventPreferencesFromUser(vector<EventPreference> &selectedPreferences)
     }
 }
 
+void queryTaskPriorityFromUser(TaskPriority &selectedPriority) {
+    vector<TaskPriority> prioritiesToDisplay = {
+        TP_High, TP_Medium, TP_Low
+    };
+
+    cout << "> Select which priority to add for the task:" << endl;
+    cout << "- 1. High" << endl;
+    cout << "- 2. Medium" << endl;
+    cout << "- 3. Low" << endl;
+
+    int selectedOptionNumber = getIntFromUser(1, 3);
+    selectedPriority = prioritiesToDisplay[selectedOptionNumber-1];
+}
+
 int getIntFromUser(int minValue, int maxValue) {
     if (minValue > maxValue) {
         swap(minValue, maxValue);
@@ -297,7 +322,7 @@ string getStringFromUserBetweenLength(int minLength, int maxLength) {
 
     bool runMainLoop = true;
     while (runMainLoop) {
-        cin >> inputString;
+        getline(cin, inputString);
 
         if (inputString.size() < minLength) {
             cout << "- Input is too short. Please try again." << endl << "> ";

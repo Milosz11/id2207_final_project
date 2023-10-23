@@ -16,6 +16,7 @@ enum MenuOption {
     MO_LogOut,
     MO_RegisterClient,
     MO_CreateOrUpdateEvent,
+    MO_CreateOrUpdateTask,
     MO_NullOption
 };
 
@@ -49,6 +50,12 @@ enum EventPreference {
     EP_Parties,
     EP_SoftHotDrinks,
     EP_PhotosFilming
+};
+
+enum TaskPriority {
+    TP_High,
+    TP_Medium,
+    TP_Low
 };
 
 class User {
@@ -126,4 +133,7 @@ private:
 
     string _assignedSubworkerUsername;
 
+    string _taskDescription;
+
+    string _priority;
 };

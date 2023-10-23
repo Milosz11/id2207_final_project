@@ -54,6 +54,9 @@ int main() {
             case MO_CreateOrUpdateEvent:
                 createOrUpdateEvent();
                 break;
+            case MO_CreateOrUpdateTask:
+                createOrUpdateTask();
+                break;
             default:
                 cout << "Menu option not implemented or known! Closing program." << endl;
                 runMenuLoop = false;

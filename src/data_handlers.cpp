@@ -146,6 +146,38 @@ void createOrUpdateEvent() {
     printUpdateOrCreateEventSuccess();
 }
 
+void createOrUpdateTask() {
+    string inputEventRecordNumber;
+    string inputAssignedSubworkerUsername;
+    string inputTaskDescription;
+    TaskPriority inputPriority;
+
+    // we could implement checks that the event record number exists
+
+    printEventRecordNoPrompt();
+    inputEventRecordNumber = getStringFromUserBetweenLength(
+        EVENT_RECORD_NO_MIN_LENGTH, EVENT_RECORD_NO_MAX_LENGTH
+    );
+
+    printAssignedSubworkerUsername();
+    inputAssignedSubworkerUsername = getStringFromUserBetweenLength(1,1024);
+
+    printTaskDescription();
+    inputTaskDescription = getStringFromUserBetweenLength(1,1024);
+
+    queryTaskPriorityFromUser(inputPriority);
+
+    json task = {
+        {"eventRecordNumber", inputEventRecordNumber},
+        {"assignedTo", inputAssignedSubworkerUsername},
+        {"description", inputTaskDescription},
+        {"priority", inputPriority}
+    };
+
+    addObjectToJson("tasks", task);
+
+}
+
 void addObjectToJson(const string entity, const json object) {
 
         ifstream ifs("data/data.json");

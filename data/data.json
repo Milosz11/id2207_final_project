@@ -36,6 +36,26 @@
             "startDate": "aeouaoeu"
         }
     ],
+    "tasks": [
+        {
+            "assignedTo": "bhashu",
+            "description": "Test",
+            "eventRecordNumber": "12absjf",
+            "priority": 0
+        },
+        {
+            "assignedTo": "bhashu",
+            "description": "Test",
+            "eventRecordNumber": "abjd292",
+            "priority": 1
+        },
+        {
+            "assignedTo": "bhashu",
+            "description": "Test task",
+            "eventRecordNumber": "eb34569",
+            "priority": 1
+        }
+    ],
     "users": [
         {
             "fullName": "John Doe",
@@ -52,7 +72,7 @@
         {
             "fullName": "Bhavya Shukla",
             "password": "password",
-            "role": 11,
+            "role": 3,
             "userName": "bhashu"
         },
         {

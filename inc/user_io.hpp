@@ -43,6 +43,10 @@ void printExpectedNumAttendeesPrompt();
 
 void printExpectedBudgetPrompt();
 
+void printAssignedSubworkerUsername();
+
+void printTaskDescription();
+
 // printAddUserSuccess
 
 void printUpdateOrCreateEventSuccess();
@@ -72,6 +76,15 @@ MenuOption queryMenuOptionsFromUser(const vector<MenuOption> &options);
  * the user selects
 */
 void queryEventPreferencesFromUser(vector<EventPreference> &selectedPreferences);
+
+/**
+ * Queries the user for event preferences and updates the passed vector in place with the 
+ * preferences the user selects
+ * 
+ * @param selectedPreferences after the function call, is updated with the event preferences
+ * the user selects
+*/
+void queryTaskPriorityFromUser(TaskPriority &selectedPriority);
 
 /**
  * Gets an integer value input from the user in the range [minValue, maxValue].
