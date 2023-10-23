@@ -187,3 +187,31 @@ void addObjectToJson(const string entity, const json object) {
         jsonOut << std::setw(4) << data;
         jsonOut.close();
 }
+
+bool checkClientExists(string clientRecordNumber) {
+    ifstream ifs("data/data.json");
+    json data = json::parse(ifs);
+    json clients = data["clients"];
+
+    // find json client object referring to passed clientRecordNumber
+    for (auto client : clients) {
+        if (clientRecordNumber == client["recordNumber"].get<string>()) {
+            return true;
+        }
+    }
+    return false;
+}
+
+bool checkEventExists(string eventRecordNumber) {
+    ifstream ifs("data/data.json");
+    json data = json::parse(ifs);
+    json events = data["events"];
+
+    // find json event object referring to passed eventRecordNumber
+    for (auto event : events) {
+        if (eventRecordNumber == event["recordNumber"].get<string>()) {
+            return true;
+        }
+    }
+    return false;
+}

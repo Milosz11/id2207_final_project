@@ -34,4 +34,30 @@ void createOrUpdateEvent();
 */
 void createOrUpdateTask();
 
+/**
+ * Encapsulate the functionality for adding data to the json database
+ * 
+ * @param entity the json array in which needs to be updated.
+ *  This can be events, users, clients, etc.
+ * 
+ * @param object json object which should be added to the database
+*/
 void addObjectToJson(string entity, json object);
+
+/**
+ * Check if a client exists in the json database using unique identifier record number.
+ * 
+ * @param clientRecordNumber a unique identifer for clients in string format
+ * 
+ * @return true if client is found in json database, otherwise false
+*/
+bool checkClientExists(string clientRecordNumber);
+
+/**
+ * Check if an event exists in the json database using unique identifier record number.
+ * 
+ * @param eventRecordNumber a unique identifer for events in string format
+ * 
+ * @return true if event is found in json database, otherwise false
+*/
+bool checkEventExists(string eventRecordNumber);
