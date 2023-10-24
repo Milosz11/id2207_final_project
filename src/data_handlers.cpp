@@ -102,17 +102,25 @@ void createOrUpdateEvent() {
     int inputExpectedBugdet;
     vector<EventPreference> inputEventPreferences;
 
-    // we could implement checks that the client record number exists
-
     printEventRecordNoPrompt();
     inputRecordNumber = getStringFromUserBetweenLength(
         EVENT_RECORD_NO_MIN_LENGTH, EVENT_RECORD_NO_MAX_LENGTH
     );
 
-    printClientRecordNoPrompt();
-    inputClientRecordNumber = getStringFromUserBetweenLength(
-        CLIENT_RECORD_NO_MIN_LENGTH, CLIENT_RECORD_NO_MAX_LENGTH
-    );
+    bool runClientNoPromptLoop = true;
+    while (runClientNoPromptLoop) {
+        printClientRecordNoPrompt();
+        inputClientRecordNumber = getStringFromUserBetweenLength(
+            CLIENT_RECORD_NO_MIN_LENGTH, CLIENT_RECORD_NO_MAX_LENGTH
+        );
+
+        if (!checkClientExists(inputClientRecordNumber)) {
+            printClientRecordNoNotFound();
+            continue;
+        }
+
+        runClientNoPromptLoop = false;
+    }
 
     printEventTypePrompt();
     inputEventType = getStringFromUserBetweenLength(1, 1024);
@@ -152,12 +160,20 @@ void createOrUpdateTask() {
     string inputTaskDescription;
     TaskPriority inputPriority;
 
-    // we could implement checks that the event record number exists
+    bool runEventNoPromptLoop = true;
+    while (runEventNoPromptLoop) {
+        printEventRecordNoPrompt();
+        inputEventRecordNumber = getStringFromUserBetweenLength(
+            EVENT_RECORD_NO_MIN_LENGTH, EVENT_RECORD_NO_MAX_LENGTH
+        );
 
-    printEventRecordNoPrompt();
-    inputEventRecordNumber = getStringFromUserBetweenLength(
-        EVENT_RECORD_NO_MIN_LENGTH, EVENT_RECORD_NO_MAX_LENGTH
-    );
+        if (!checkEventExists(inputEventRecordNumber)) {
+            printEventRecordNoNotFound();
+            continue;
+        }
+
+        runEventNoPromptLoop = false;
+    }
 
     printAssignedSubworkerUsername();
     inputAssignedSubworkerUsername = getStringFromUserBetweenLength(1,1024);
@@ -180,12 +196,12 @@ void createOrUpdateTask() {
 
 void addObjectToJson(const string entity, const json object) {
 
-        ifstream ifs("data/data.json");
-        json data = json::parse(ifs);
-        data[entity].push_back(object);
-        std::ofstream jsonOut("data/data.json");
-        jsonOut << std::setw(4) << data;
-        jsonOut.close();
+    ifstream ifs("data/data.json");
+    json data = json::parse(ifs);
+    data[entity].push_back(object);
+    std::ofstream jsonOut("data/data.json");
+    jsonOut << std::setw(4) << data;
+    jsonOut.close();
 }
 
 bool checkClientExists(string clientRecordNumber) {
