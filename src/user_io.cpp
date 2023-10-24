@@ -1,7 +1,6 @@
 #include "../inc/user_io.hpp"
 
 void printHorizontalDivider() {
-    cout << "\033[1;32m" << endl;
     cout << string(70, '-') << endl;
 }
 
@@ -10,6 +9,7 @@ void printEmptyLine() {
 }
 
 void printGreeting() {
+    cout << "\033[1;32m"; // make text colored
     printHorizontalDivider();
     cout << string(20, ' ') << " Welcome to the SEP system!" << endl;
     printHorizontalDivider();
@@ -48,7 +48,7 @@ void printClientTeleNoPrompt() {
 }
 
 void printAddClientSuccess() {
-    cout << "-Client successfully registered." << endl;
+    cout << "- Client successfully registered." << endl;
 }
 
 void printEventRecordNoPrompt() {
@@ -81,6 +81,14 @@ void printAssignedSubworkerUsername() {
 
 void printTaskDescription() {
     cout << "> Task Description: ";
+}
+
+void printClientRecordNoNotFound() {
+    cout << "Client record number not found. Please enter a different number." << endl;
+}
+
+void printEventRecordNoNotFound() {
+    cout << "Event record number not found. Please enter a different number." << endl;
 }
 
 void printUpdateOrCreateEventSuccess() {
@@ -244,7 +252,7 @@ void queryEventPreferencesFromUser(vector<EventPreference> &selectedPreferences)
         for (int i = 0; i < preferencesToDisplay.size(); i++) {
             cout << "- " << (i + 1) << ". ";
             printEventPreferenceString(preferencesToDisplay[i]);
-            cout << endl;
+            cout << "\n";
         }
 
         int selectedOptionNumber = getIntFromUser(0, preferencesToDisplay.size());
