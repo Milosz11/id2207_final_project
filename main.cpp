@@ -56,6 +56,9 @@ int main() {
             case MO_CreateOrUpdateTask:
                 createOrUpdateTask();
                 break;
+            case MO_CreateOrUpdateFinancialRequest:
+                createOrUpdateFinancialRequest();
+                break;
             default:
                 cout << "Menu option not implemented or known! Closing program." << endl;
                 runMenuLoop = false;

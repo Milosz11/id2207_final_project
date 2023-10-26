@@ -17,6 +17,7 @@ enum MenuOption {
     MO_RegisterClient,
     MO_CreateOrUpdateEvent,
     MO_CreateOrUpdateTask,
+    MO_CreateOrUpdateFinancialRequest,
     MO_NullOption
 };
 
@@ -136,4 +137,19 @@ private:
     string _taskDescription;
 
     string _priority;
+};
+
+class FinancialRequest {
+public:
+    FinancialRequest(string eventRecordNumber);
+
+private:
+    string _requestingDepartment;
+    
+    string _eventRecordNumber;
+    
+    int _requiredAmount;
+    
+    string reason;
+
 };

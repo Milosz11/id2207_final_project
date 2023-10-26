@@ -95,6 +95,18 @@ void printUpdateOrCreateEventSuccess() {
     cout << "- Event successfully created/updated!" << endl;
 }
 
+void printRequestingDepartmentPrompt() {
+    cout << "> Requesting Department: ";
+}
+
+void printRequiredAmountPrompt() {
+    cout << "> Required Amount: ";
+}
+
+void printFinReqReasonPrompt() {
+    cout << "> Reason: ";
+}
+
 void printLoggedInUser(const string &userName, Role role) {
     cout << "You are logged in as: " << userName << " (" << RoleToString(role) << ")" << endl;
 }
@@ -187,10 +199,13 @@ void printMenuOptionString(MenuOption menuOption) {
             cout << "Register client";
             break;
         case MO_CreateOrUpdateEvent:
-            cout << "Add event";
+            cout << "Create/update event";
             break;
         case MO_CreateOrUpdateTask:
             cout << "Add task";
+            break;
+        case MO_CreateOrUpdateFinancialRequest:
+            cout << "Create/update financial request";
             break;
         default:
             cout << "Unknown";

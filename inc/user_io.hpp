@@ -53,6 +53,12 @@ void printEventRecordNoNotFound();
 
 void printUpdateOrCreateEventSuccess();
 
+void printRequestingDepartmentPrompt();
+
+void printRequiredAmountPrompt();
+
+void printFinReqReasonPrompt();
+
 void printLoggedInUser(const string &userName, Role role);
 
 string RoleToString(Role role);

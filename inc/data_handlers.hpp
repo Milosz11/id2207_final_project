@@ -35,6 +35,11 @@ void createOrUpdateEvent();
 void createOrUpdateTask();
 
 /**
+ * Prompt the user for details about creating or updating a financial request, then update json file
+*/
+void createOrUpdateFinancialRequest();
+
+/**
  * Encapsulate the functionality for adding data to the json database
  * 
  * @param entity the json array in which needs to be updated.

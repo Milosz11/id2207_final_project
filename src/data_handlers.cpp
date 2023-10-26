@@ -194,6 +194,47 @@ void createOrUpdateTask() {
 
 }
 
+void createOrUpdateFinancialRequest() {
+    string inputRequestingDepartment;
+    string inputEventRecordNumber;
+    int inputRequiredAmount;
+    string inputReason;
+
+    printRequestingDepartmentPrompt();
+    inputRequestingDepartment = getStringFromUserBetweenLength(1, 4096);
+
+    bool runEventNoPromptLoop = true;
+    while (runEventNoPromptLoop) {
+        printEventRecordNoPrompt();
+        inputEventRecordNumber = getStringFromUserBetweenLength(
+            EVENT_RECORD_NO_MIN_LENGTH, EVENT_RECORD_NO_MAX_LENGTH
+        );
+
+        if (!checkEventExists(inputEventRecordNumber)) {
+            printEventRecordNoNotFound();
+            continue;
+        }
+
+        runEventNoPromptLoop = false;
+    }
+
+    printRequiredAmountPrompt();
+    inputRequiredAmount = getIntFromUser(0, 1000000000);
+
+    printFinReqReasonPrompt();
+    inputReason = getStringFromUserBetweenLength(1, 4096);
+
+    json finReq = {
+        {"requestingDepartment", inputRequestingDepartment},
+        {"eventRecordNumber", inputEventRecordNumber},
+        {"requiredAmount", inputRequiredAmount},
+        {"reason", inputReason}
+    };
+
+    addObjectToJson("finRequests", finReq);
+
+}
+
 void addObjectToJson(const string entity, const json object) {
 
     ifstream ifs("data/data.json");
