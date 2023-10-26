@@ -232,7 +232,7 @@ void createOrUpdateFinancialRequest() {
     };
 
     addObjectToJson("finRequests", finReq);
-
+    printFinRequestSuccess();
 }
 
 void addObjectToJson(const string entity, const json object) {

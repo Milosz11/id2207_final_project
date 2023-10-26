@@ -107,6 +107,11 @@ void printFinReqReasonPrompt() {
     cout << "> Reason: ";
 }
 
+void printFinRequestSuccess() {
+    cout << "- Financial request successfully created!" << endl;
+    printHorizontalDivider();
+}
+
 void printLoggedInUser(const string &userName, Role role) {
     cout << "You are logged in as: " << userName << " (" << RoleToString(role) << ")" << endl;
 }

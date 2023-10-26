@@ -59,6 +59,8 @@ void printRequiredAmountPrompt();
 
 void printFinReqReasonPrompt();
 
+void printFinRequestSuccess();
+
 void printLoggedInUser(const string &userName, Role role);
 
 string RoleToString(Role role);

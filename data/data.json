@@ -36,6 +36,20 @@
             "startDate": "aeouaoeu"
         }
     ],
+    "finRequests": [
+        {
+            "eventRecordNumber": "eut341",
+            "reason": "aoeu",
+            "requestingDepartment": "Something",
+            "requiredAmount": 10000
+        },
+        {
+            "eventRecordNumber": "eut341",
+            "reason": "ayyooo",
+            "requestingDepartment": "somenuso",
+            "requiredAmount": 321423
+        }
+    ],
     "tasks": [
         {
             "assignedTo": "bhashu",
@@ -60,7 +74,7 @@
         {
             "fullName": "John Doe",
             "password": "password",
-            "role": 5,
+            "role": 2,
             "userName": "user"
         },
         {
