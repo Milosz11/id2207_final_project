@@ -26,10 +26,10 @@ PermissionMatrix::PermissionMatrix() {
                 MO_LogOut, MO_CreateOrUpdateEvent
         };
         _rolePermissions[ProductionManager] = vector<MenuOption> {
-                MO_LogOut, MO_CreateOrUpdateTask, MO_CreateOrUpdateFinancialRequest
+                MO_LogOut, MO_CreateOrUpdateTask, MO_CreateFinancialRequest
         };
         _rolePermissions[ServicesManager] = vector<MenuOption> {
-                MO_LogOut, MO_CreateOrUpdateTask, MO_CreateOrUpdateFinancialRequest
+                MO_LogOut, MO_CreateOrUpdateTask, MO_CreateFinancialRequest
         };
         _rolePermissions[SeniorCustomerServiceOfficer] = vector<MenuOption> {
                 MO_LogOut, MO_RegisterClient, MO_CreateOrUpdateEvent
@@ -83,4 +83,36 @@ PermissionMatrix::PermissionMatrix() {
 
 const vector<MenuOption> &PermissionMatrix::getPermissions(Role role) {
         return _rolePermissions[role];
+}
+
+FinancialRequest::FinancialRequest(string requestingDepartment, string eventRecordNumber, int requiredAmount, 
+            string reason, bool isAccepted) : _requestingDepartment(requestingDepartment),
+            _eventRecordNumber(eventRecordNumber), _requiredAmount(requiredAmount), _reason(reason),
+            _isAccepted(isAccepted) { }
+
+string FinancialRequest::toString() {
+        string output;
+
+        output.append("Requesting department: ");
+        output.append(_requestingDepartment);
+        output.append("\nEvent record number: ");
+        output.append(_eventRecordNumber);
+        output.append("\nRequired amount: ");
+        output.append("_required amount_");
+        output.append("\nReason: ");
+        output.append(_reason);
+        output.append("\nStatus: ");
+        output.append(_isAccepted ? "Approved" : "Denied");
+        output.append("\n");
+        output.append("--------------------------------------------------");
+        
+        return output;
+}
+
+bool FinancialRequest::getIsAccepted() {
+        return _isAccepted;
+}
+
+void FinancialRequest::setIsAccepted(bool isAccepted) {
+        _isAccepted = isAccepted;
 }

@@ -17,7 +17,8 @@ enum MenuOption {
     MO_RegisterClient,
     MO_CreateOrUpdateEvent,
     MO_CreateOrUpdateTask,
-    MO_CreateOrUpdateFinancialRequest,
+    MO_CreateFinancialRequest,
+    MO_UpdateFinancialRequest,
     MO_NullOption
 };
 
@@ -141,15 +142,25 @@ private:
 
 class FinancialRequest {
 public:
-    FinancialRequest(string eventRecordNumber);
+    FinancialRequest(string requestingDepartment, string eventRecordNumber, int requiredAmount, 
+            string reason, bool isAccepted);
 
-private:
+    // i know i could overlead insertion operator but i wanted more possibilty
+    string toString();
+
+    bool getIsAccepted();
+
+    void setIsAccepted(bool isAccepted);
+
+public:
     string _requestingDepartment;
     
     string _eventRecordNumber;
     
     int _requiredAmount;
     
-    string reason;
+    string _reason;
+
+    bool _isAccepted;
 
 };

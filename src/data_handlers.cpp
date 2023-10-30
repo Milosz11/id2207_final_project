@@ -219,7 +219,7 @@ void createOrUpdateFinancialRequest() {
     }
 
     printRequiredAmountPrompt();
-    inputRequiredAmount = getIntFromUser(0, 1000000000);
+    inputRequiredAmount = getIntFromUser(0, 10000000);
 
     printFinReqReasonPrompt();
     inputReason = getStringFromUserBetweenLength(1, 4096);
@@ -228,7 +228,8 @@ void createOrUpdateFinancialRequest() {
         {"requestingDepartment", inputRequestingDepartment},
         {"eventRecordNumber", inputEventRecordNumber},
         {"requiredAmount", inputRequiredAmount},
-        {"reason", inputReason}
+        {"reason", inputReason},
+        {"isAccepted", false}
     };
 
     addObjectToJson("finRequests", finReq);

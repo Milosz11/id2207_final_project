@@ -4,6 +4,7 @@
 #include <string>
 
 #include "entity_objects.hpp"
+#include "data_handlers.hpp"
 
 using namespace std;
 
@@ -95,6 +96,12 @@ void queryEventPreferencesFromUser(vector<EventPreference> &selectedPreferences)
  * the user selects
 */
 void queryTaskPriorityFromUser(TaskPriority &selectedPriority);
+
+/**
+ * Queries the user for a financial request, return a pointer to a heap allocated object that
+ * should be freed the the caller.
+*/
+void updateFinancialRequest();
 
 /**
  * Gets an integer value input from the user in the range [minValue, maxValue].

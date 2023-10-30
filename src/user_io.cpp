@@ -209,8 +209,11 @@ void printMenuOptionString(MenuOption menuOption) {
         case MO_CreateOrUpdateTask:
             cout << "Add task";
             break;
-        case MO_CreateOrUpdateFinancialRequest:
-            cout << "Create/update financial request";
+        case MO_CreateFinancialRequest:
+            cout << "Create financial request";
+            break;
+        case MO_UpdateFinancialRequest:
+            cout << "Update financial request";
             break;
         default:
             cout << "Unknown";
@@ -303,6 +306,76 @@ void queryTaskPriorityFromUser(TaskPriority &selectedPriority) {
     selectedPriority = prioritiesToDisplay[selectedOptionNumber-1];
 }
 
+void updateFinancialRequest() {
+    ifstream ifs("data/data.json");
+    json data = json::parse(ifs);
+    json finRequests = data["finRequests"];
+
+    cout << "--------------------------------------------------" << endl;
+    cout << "0.\n<QUIT>\n--------------------------------------------------" << endl;
+
+    // display each financial request
+    int counter = 1;
+    vector<json> vecFinRequests;
+
+    for (auto finRequest : finRequests) {
+        string eventRecordNumber = finRequest["eventRecordNumber"].get<string>();
+        string reason = finRequest["reason"].get<string>();
+        string requestingDepartment = finRequest["requestingDepartment"].get<string>();
+        int requiredAmount = finRequest["requiredAmount"].get<int>();
+        bool isAccepted = finRequest["isAccepted"].get<bool>();
+        FinancialRequest fr(
+            requestingDepartment, eventRecordNumber, requiredAmount, reason, isAccepted
+        );
+        vecFinRequests.push_back(finRequest);
+
+        cout << counter << ".\n";
+        cout << fr.toString() << endl;
+
+        counter++;
+    }
+
+    // get which one user wants to update
+    int userInput = getIntFromUser(0, finRequests.size());
+    int userInputIndex = userInput - 1;
+
+    if (userInput = 0) {
+        return;
+    }
+
+    cout << userInputIndex << endl;
+
+    json fr = vecFinRequests.at(userInputIndex);
+
+    cout << "Change status to approved? (y/n): ";
+
+    bool runLoop = true;
+    while (runLoop) {
+        string input;
+        // cin >> input;
+        getline(cin, input);
+
+
+        if (input.compare("y") == 0) {
+            fr["isAccepted"] = true;
+            runLoop = false;
+        }
+
+        if (input.compare("n") == 0) {
+            runLoop = false;
+        }
+    }
+
+    // update json
+    data["finRequests"].clear();
+    for (auto finReq : vecFinRequests) {
+        data["finRequests"].push_back(finReq);
+    }
+    std::ofstream jsonOut("data/data.json");
+    jsonOut << std::setw(4) << data;
+    jsonOut.close();
+}
+
 int getIntFromUser(int minValue, int maxValue) {
     if (minValue > maxValue) {
         swap(minValue, maxValue);
@@ -313,7 +386,7 @@ int getIntFromUser(int minValue, int maxValue) {
 
     bool runMainLoop = true;
     while (runMainLoop) {
-        // cout << "> ";
+        cout << "> ";
         cin >> inputString;
 
         bool isInt = true;
@@ -325,13 +398,13 @@ int getIntFromUser(int minValue, int maxValue) {
         }
 
         if (!isInt) {
-            cout << "- Incorrect input. Try again." << endl << "> ";
+            cout << "- Incorrect input. Try again." << endl;
             continue;
         }
 
         inputInt = stoi(inputString);
         if (inputInt < minValue || inputInt > maxValue) {
-            cout << "- Incorrect input. Try again." << endl << "> ";
+            cout << "- Incorrect input. Try again." << endl;
             continue;
         }
 

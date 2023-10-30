@@ -39,15 +39,10 @@
     "finRequests": [
         {
             "eventRecordNumber": "eut341",
-            "reason": "aoeu",
-            "requestingDepartment": "Something",
+            "isAccepted": false,
+            "reason": "Gaming chairs",
+            "requestingDepartment": "Production",
             "requiredAmount": 10000
-        },
-        {
-            "eventRecordNumber": "eut341",
-            "reason": "ayyooo",
-            "requestingDepartment": "somenuso",
-            "requiredAmount": 321423
         }
     ],
     "tasks": [
