@@ -79,6 +79,10 @@ void printAssignedSubworkerUsername() {
     cout << "> Assign to: ";
 }
 
+void printTaskId() {
+    cout << "> Task ID: ";
+}
+
 void printTaskDescription() {
     cout << "> Task Description: ";
 }
@@ -189,6 +193,23 @@ string RoleToString(Role role) {
     return "Unknown";
 }
 
+string PriorityToString(TaskPriority priority) {
+   switch (priority) {
+        case TP_High:
+            return "High";
+            break;
+        case TP_Medium:
+            return "Medium";
+            break;
+        case TP_Low:
+            return "Low";
+            break;
+        default:
+            return "Unknown";
+            break;
+    }
+}
+
 void printMenuOptionString(MenuOption menuOption) {
     switch (menuOption) {
         case MO_LogIn:
@@ -214,6 +235,14 @@ void printMenuOptionString(MenuOption menuOption) {
             break;
         case MO_UpdateFinancialRequest:
             cout << "Update financial request";
+        case MO_ViewMyTasks:
+            cout << "View my tasks";
+            break;
+        case MO_AddCommentsToTask:
+            cout << "Add comments to task";
+            break;
+        case MO_ViewAllTasks:
+            cout << "View all tasks";
             break;
         default:
             cout << "Unknown";
@@ -242,6 +271,23 @@ void printEventPreferenceString(EventPreference eventPreference) {
             cout << "Unknown";
             break;
     }
+}
+
+void printTaskInfo(const Task task) {
+    cout << string(50, '=') << endl;
+    cout << "Event id: " << task.getEventRecordNumber() << endl;
+    cout << "Task Description: " << task.getTaskDescription() << endl;
+    cout << "Task Priority: " << PriorityToString(task.getPriority()) << endl;
+    cout << string(50, '=') << endl;
+}
+
+void printFullTaskInfo(const Task task) {
+    cout << string(50, '=') << endl;
+    cout << "Event id: " << task.getEventRecordNumber() << endl;
+    cout << "Task Description: " << task.getTaskDescription() << endl;
+    cout << "Task Priority: " << PriorityToString(task.getPriority()) << endl;
+    cout << "Comments: " << task.getComments() << endl;
+    cout << string(50, '=') << endl;
 }
 
 MenuOption queryMenuOptionsFromUser(const vector<MenuOption> &options) {

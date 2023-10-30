@@ -26,10 +26,10 @@ PermissionMatrix::PermissionMatrix() {
                 MO_LogOut, MO_CreateOrUpdateEvent
         };
         _rolePermissions[ProductionManager] = vector<MenuOption> {
-                MO_LogOut, MO_CreateOrUpdateTask, MO_CreateFinancialRequest
+                MO_LogOut, MO_CreateOrUpdateTask, MO_CreateFinancialRequest, MO_ViewAllTasks
         };
         _rolePermissions[ServicesManager] = vector<MenuOption> {
-                MO_LogOut, MO_CreateOrUpdateTask, MO_CreateFinancialRequest
+                MO_LogOut, MO_CreateOrUpdateTask, MO_CreateFinancialRequest, MO_ViewAllTasks
         };
         _rolePermissions[SeniorCustomerServiceOfficer] = vector<MenuOption> {
                 MO_LogOut, MO_RegisterClient, MO_CreateOrUpdateEvent
@@ -50,25 +50,25 @@ PermissionMatrix::PermissionMatrix() {
                 MO_LogOut
         };
         _rolePermissions[Photographer] = vector<MenuOption> {
-                MO_LogOut
+                MO_LogOut, MO_ViewMyTasks, MO_AddCommentsToTask
         };
         _rolePermissions[AudioSpecialist] = vector<MenuOption> {
-                MO_LogOut
+                MO_LogOut, MO_ViewMyTasks, MO_AddCommentsToTask
         };
         _rolePermissions[GraphicDesigner] = vector<MenuOption> {
-                MO_LogOut
+                MO_LogOut, MO_ViewMyTasks, MO_AddCommentsToTask
         };
         _rolePermissions[Decorations] = vector<MenuOption> {
-                MO_LogOut
+                MO_LogOut, MO_ViewMyTasks, MO_AddCommentsToTask
         };
         _rolePermissions[ComputerRelated] = vector<MenuOption> {
-                MO_LogOut
+                MO_LogOut, MO_ViewMyTasks, MO_AddCommentsToTask
         };
         _rolePermissions[Chef] = vector<MenuOption> {
-                MO_LogOut
+                MO_LogOut, MO_ViewMyTasks, MO_AddCommentsToTask
         };
         _rolePermissions[Waiter] = vector<MenuOption> {
-                MO_LogOut
+                MO_LogOut, MO_ViewMyTasks, MO_AddCommentsToTask
         };
         _rolePermissions[VicePresident] = vector<MenuOption> {
                 MO_LogOut
@@ -115,4 +115,31 @@ bool FinancialRequest::getIsAccepted() {
 
 void FinancialRequest::setIsAccepted(bool isAccepted) {
         _isAccepted = isAccepted;
+}
+
+Task::Task(const string &eventRecordNumber, const string &username, 
+        const string &taskDescription, const TaskPriority &priority) :
+        _eventRecordNumber(eventRecordNumber), _assignedSubworkerUsername(username), 
+        _taskDescription(taskDescription), _priority(priority) { }
+
+Task::Task(const string &eventRecordNumber, const string &username, 
+        const string &taskDescription, const TaskPriority &priority, const string &comments) :
+        _eventRecordNumber(eventRecordNumber), _assignedSubworkerUsername(username), 
+        _taskDescription(taskDescription), _priority(priority), _comments(comments) { }
+
+
+string Task::getEventRecordNumber() const {
+        return _eventRecordNumber;
+}
+
+string Task::getTaskDescription() const {
+        return _taskDescription;
+}
+
+TaskPriority Task::getPriority() const {
+        return _priority;
+}
+
+string Task::getComments() const {
+        return _comments;
 }

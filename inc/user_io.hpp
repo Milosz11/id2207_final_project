@@ -48,6 +48,8 @@ void printAssignedSubworkerUsername();
 
 void printTaskDescription();
 
+void printTaskId();
+
 void printClientRecordNoNotFound();
 
 void printEventRecordNoNotFound();
@@ -66,9 +68,15 @@ void printLoggedInUser(const string &userName, Role role);
 
 string RoleToString(Role role);
 
+string PriorityToString(TaskPriority priority);
+
 void printMenuOptionString(MenuOption menuOption);
 
 void printEventPreferenceString(EventPreference eventPreference);
+
+void printTaskInfo(const Task task);
+
+void printFullTaskInfo(const Task task);
 
 /**
  * Display a list of menu options to the user and return the selected one.

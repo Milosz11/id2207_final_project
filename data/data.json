@@ -62,7 +62,8 @@
             "assignedTo": "bhashu",
             "description": "Test task",
             "eventRecordNumber": "eb34569",
-            "priority": 1
+            "priority": 1,
+            "taskId" : "abcd1234"
         }
     ],
     "users": [
@@ -81,7 +82,7 @@
         {
             "fullName": "Bhavya Shukla",
             "password": "password",
-            "role": 3,
+            "role": 11,
             "userName": "bhashu"
         },
         {

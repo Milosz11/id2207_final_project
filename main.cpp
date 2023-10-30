@@ -61,6 +61,14 @@ int main() {
                 break;
             case MO_UpdateFinancialRequest:
                 updateFinancialRequest();
+            case MO_ViewMyTasks:
+                viewMyTasks(pActiveUser->getUserName());
+                break;
+            case MO_AddCommentsToTask:
+                addCommentsToTask();
+                break;
+            case MO_ViewAllTasks:
+                viewAllTasks();
                 break;
             default:
                 cout << "Menu option not implemented or known! Closing program." << endl;

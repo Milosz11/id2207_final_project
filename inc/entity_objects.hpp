@@ -19,6 +19,9 @@ enum MenuOption {
     MO_CreateOrUpdateTask,
     MO_CreateFinancialRequest,
     MO_UpdateFinancialRequest,
+    MO_ViewMyTasks,
+    MO_AddCommentsToTask,
+    MO_ViewAllTasks,
     MO_NullOption
 };
 
@@ -128,16 +131,33 @@ private:
 
 class Task {
 public:
-    Task(string eventRecordNumber);
+    Task(const string &eventRecordNumber, const string &assignedSubworkerUsername, 
+        const string &taskDescription, const TaskPriority &priority); 
+
+    Task(const string &eventRecordNumber, const string &assignedSubworkerUsername, 
+        const string &taskDescription, const TaskPriority &priority, const string &comments); 
+        
+    string getEventRecordNumber() const;
+
+    string getTaskDescription() const;
+
+    TaskPriority getPriority() const;
+
+    string getComments() const;
 
 private:
+
+    string _taskId;
+
     string _eventRecordNumber;
 
     string _assignedSubworkerUsername;
 
     string _taskDescription;
 
-    string _priority;
+    TaskPriority _priority;
+
+    string _comments;
 };
 
 class FinancialRequest {

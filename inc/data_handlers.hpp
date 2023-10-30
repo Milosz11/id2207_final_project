@@ -66,3 +66,9 @@ bool checkClientExists(string clientRecordNumber);
  * @return true if event is found in json database, otherwise false
 */
 bool checkEventExists(string eventRecordNumber);
+
+void viewMyTasks(const string userName);
+
+void viewAllTasks();
+
+void addCommentsToTask();

@@ -158,6 +158,7 @@ void createOrUpdateTask() {
     string inputEventRecordNumber;
     string inputAssignedSubworkerUsername;
     string inputTaskDescription;
+    string inputTaskId;
     TaskPriority inputPriority;
 
     bool runEventNoPromptLoop = true;
@@ -175,6 +176,9 @@ void createOrUpdateTask() {
         runEventNoPromptLoop = false;
     }
 
+    printTaskId();
+    inputTaskId = getStringFromUserBetweenLength(6,8);
+
     printAssignedSubworkerUsername();
     inputAssignedSubworkerUsername = getStringFromUserBetweenLength(1,1024);
 
@@ -187,7 +191,8 @@ void createOrUpdateTask() {
         {"eventRecordNumber", inputEventRecordNumber},
         {"assignedTo", inputAssignedSubworkerUsername},
         {"description", inputTaskDescription},
-        {"priority", inputPriority}
+        {"priority", inputPriority},
+        {"taskId", inputTaskId}
     };
 
     addObjectToJson("tasks", task);
@@ -236,6 +241,98 @@ void createOrUpdateFinancialRequest() {
     printFinRequestSuccess();
 }
 
+void addCommentsToTask() {
+    string inputTaskId;
+    string inputComment;
+
+    printTaskId();
+    inputTaskId = getStringFromUserBetweenLength(6,8);
+
+    ifstream ifs("data/data.json");
+    json data = json::parse(ifs);
+    json tasks = data["tasks"];
+
+    // find json task object referring to passed taskId
+    for (auto task : tasks) {
+        if (inputTaskId == task["taskId"].get<string>()) {
+           Task *temp = new Task (
+                task["eventRecordNumber"].get<string>(),
+                task["assignedTo"].get<string>(),
+                task["description"].get<string>(),
+                (TaskPriority) task["priority"].get<int>()
+            );
+
+            printTaskInfo(*temp);
+            delete temp;
+
+            cout << "> New Comment: ";
+            inputComment = getStringFromUserBetweenLength(5,1024);
+
+            json newTask = {
+                {"eventRecordNumber", task["eventRecordNumber"].get<string>()},
+                {"assignedTo", task["assignedTo"].get<string>()},
+                {"description", task["description"].get<string>()},
+                {"priority", (TaskPriority) task["priority"].get<int>()},
+                {"taskId", inputTaskId},
+                {"comments", inputComment}
+            };
+
+            addObjectToJson("tasks", newTask);
+            break;
+        }
+    }
+    cout << "Task Id does not exist";
+}
+
+void viewAllTasks() {
+    ifstream ifs("data/data.json");
+    json data = json::parse(ifs);
+    json tasks = data["tasks"];
+
+    for (auto task : tasks) {
+        if (!tasks.empty()) {
+            Task *temp = new Task (
+                task["eventRecordNumber"].get<string>(),
+                task["assignedTo"].get<string>(),
+                task["description"].get<string>(),
+                (TaskPriority) task["priority"].get<int>(),
+                task["comments"].get<string>()
+            );
+
+            printFullTaskInfo(*temp);
+            delete temp;
+        }
+    }
+}
+
+void viewMyTasks(const string userName) {
+    ifstream ifs("data/data.json");
+    json data = json::parse(ifs);
+    json tasks = data["tasks"];
+    json myTasks;
+
+    // find json task object referring to passed username
+    for (auto task : tasks) {
+        if (userName == task["assignedTo"].get<string>()) {
+            myTasks.push_back(task);
+        }
+    }
+
+    for (auto myTask : myTasks) {
+        if (!myTasks.empty()) {
+            Task *temp = new Task (
+                myTask["eventRecordNumber"].get<string>(),
+                myTask["assignedTo"].get<string>(),
+                myTask["description"].get<string>(),
+                (TaskPriority) myTask["priority"].get<int>()
+            );
+
+            printTaskInfo(*temp);
+            delete temp;
+        }
+    }
+}
+
 void addObjectToJson(const string entity, const json object) {
 
     ifstream ifs("data/data.json");
@@ -261,6 +358,20 @@ bool checkClientExists(string clientRecordNumber) {
 }
 
 bool checkEventExists(string eventRecordNumber) {
+    ifstream ifs("data/data.json");
+    json data = json::parse(ifs);
+    json events = data["events"];
+
+    // find json event object referring to passed eventRecordNumber
+    for (auto event : events) {
+        if (eventRecordNumber == event["recordNumber"].get<string>()) {
+            return true;
+        }
+    }
+    return false;
+}
+
+bool checkTaskExists(string eventRecordNumber) {
     ifstream ifs("data/data.json");
     json data = json::parse(ifs);
     json events = data["events"];
