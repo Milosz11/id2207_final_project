@@ -471,6 +471,11 @@ string getStringFromUserBetweenLength(int minLength, int maxLength) {
     while (runMainLoop) {
         getline(cin, inputString);
 
+        if (inputString == ""){
+            cout << "> ";
+            continue;
+        }
+
         if (inputString.size() < minLength) {
             cout << "- Input is too short. Please try again." << endl << "> ";
             continue;

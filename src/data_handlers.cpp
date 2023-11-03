@@ -192,7 +192,8 @@ void createOrUpdateTask() {
         {"assignedTo", inputAssignedSubworkerUsername},
         {"description", inputTaskDescription},
         {"priority", inputPriority},
-        {"taskId", inputTaskId}
+        {"taskId", inputTaskId},
+        {"comments", ""}
     };
 
     addObjectToJson("tasks", task);
@@ -254,6 +255,7 @@ void addCommentsToTask() {
 
     // find json task object referring to passed taskId
     for (auto task : tasks) {
+        int i = 0;
         if (inputTaskId == task["taskId"].get<string>()) {
            Task *temp = new Task (
                 task["eventRecordNumber"].get<string>(),
@@ -277,9 +279,15 @@ void addCommentsToTask() {
                 {"comments", inputComment}
             };
 
+            data["tasks"].erase(data["tasks"].begin() + i);
+            std::ofstream jsonOut("data/data.json");
+            jsonOut << std::setw(4) << data;
+            jsonOut.close();
             addObjectToJson("tasks", newTask);
-            break;
+            cout << "Comment added to task successfully!\n";
+            return;
         }
+        i++;
     }
     cout << "Task Id does not exist";
 }

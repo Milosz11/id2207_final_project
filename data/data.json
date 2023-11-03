@@ -48,30 +48,31 @@
     "tasks": [
         {
             "assignedTo": "bhashu",
-            "description": "Test",
-            "eventRecordNumber": "12absjf",
-            "priority": 0
-        },
-        {
-            "assignedTo": "bhashu",
-            "description": "Test",
-            "eventRecordNumber": "abjd292",
-            "priority": 1
-        },
-        {
-            "assignedTo": "bhashu",
+            "comments": "new comment",
             "description": "Test task",
             "eventRecordNumber": "eb34569",
             "priority": 1,
-            "taskId" : "abcd1234"
+            "taskId": "abcd1234"
         }
     ],
     "users": [
         {
             "fullName": "John Doe",
             "password": "password",
-            "role": 2,
+            "role": 1,
             "userName": "user"
+        },
+        {
+            "fullName": "John Doe",
+            "password": "password",
+            "role": 3,
+            "userName": "pmanager"
+        },
+        {
+            "fullName": "John Doe",
+            "password": "password",
+            "role": 3,
+            "userName": "fmanager"
         },
         {
             "fullName": "Milosz Dabrowski",
@@ -88,7 +89,7 @@
         {
             "fullName": "Mike",
             "password": "password",
-            "role": 0,
+            "role": 1,
             "userName": "mike1"
         }
     ]
